@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Foundation & API** - Monorepo, shared Zod schemas, database, REST API with full CRUD and JWT auth
 - [ ] **Phase 2: Authentication Flows** - User signup/login via web, browser-based CLI auth, session persistence
-- [ ] **Phase 3: Core Kanban CLI** - Workspace, board, and column CRUD via CLI commands with context system
+- [x] **Phase 3: Core Kanban CLI** - Workspace, board, and column CRUD via CLI commands with context system (completed 2026-03-26)
 - [ ] **Phase 4: Item Management** - Full item lifecycle via CLI (create, edit, move, labels, due dates)
 - [ ] **Phase 5: Web App** - Trello-style board view with drag-and-drop, inline editing, and workspace navigation
 
@@ -115,6 +115,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Foundation & API | 0/3 | Not started | - |
 | 2. Authentication Flows | 0/3 | Not started | - |
-| 3. Core Kanban CLI | 0/3 | Not started | - |
+| 3. Core Kanban CLI | 1/1 | Complete   | 2026-03-26 |
 | 4. Item Management | 0/3 | Not started | - |
 | 5. Web App | 0/3 | Not started | - |

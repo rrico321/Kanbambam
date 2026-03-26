@@ -22,10 +22,10 @@
 
 ### Columns
 
-- [ ] **COLM-01**: User can add a column to a board
-- [ ] **COLM-02**: User can rename a column
-- [ ] **COLM-03**: User can reorder columns within a board
-- [ ] **COLM-04**: User can delete a column (moves items to a target column or deletes them)
+- [x] **COLM-01**: User can add a column to a board
+- [x] **COLM-02**: User can rename a column
+- [x] **COLM-03**: User can reorder columns within a board
+- [x] **COLM-04**: User can delete a column (moves items to a target column or deletes them)
 
 ### Items
 
@@ -40,7 +40,7 @@
 
 ### CLI
 
-- [ ] **CLI-01**: All entity operations available as CLI commands (workspace, board, column, item CRUD)
+- [x] **CLI-01**: All entity operations available as CLI commands (workspace, board, column, item CRUD)
 - [ ] **CLI-02**: Every command supports `--json` flag for structured JSON output (AI-friendly)
 - [ ] **CLI-03**: Human-readable formatted output by default
 - [ ] **CLI-04**: Browser-based login flow (`kanbambam auth login` opens browser, receives token)
@@ -143,11 +143,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BORD-03 | Phase 3 | Pending |
 | BORD-04 | Phase 3 | Pending |
 | BORD-05 | Phase 3 | Pending |
-| COLM-01 | Phase 3 | Pending |
-| COLM-02 | Phase 3 | Pending |
-| COLM-03 | Phase 3 | Pending |
-| COLM-04 | Phase 3 | Pending |
-| CLI-01 | Phase 3 | Pending |
+| COLM-01 | Phase 3 | Complete |
+| COLM-02 | Phase 3 | Complete |
+| COLM-03 | Phase 3 | Complete |
+| COLM-04 | Phase 3 | Complete |
+| CLI-01 | Phase 3 | Complete |
 | CLI-05 | Phase 3 | Pending |
 | CLI-06 | Phase 3 | Pending |
 | CLI-07 | Phase 3 | Pending |
