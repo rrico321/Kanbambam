@@ -7,10 +7,10 @@
 
 ### Workspaces
 
-- [ ] **WKSP-01**: User can create a workspace with a name
-- [ ] **WKSP-02**: User can list all their workspaces
-- [ ] **WKSP-03**: User can rename a workspace
-- [ ] **WKSP-04**: User can delete a workspace (and all its boards)
+- [x] **WKSP-01**: User can create a workspace with a name
+- [x] **WKSP-02**: User can list all their workspaces
+- [x] **WKSP-03**: User can rename a workspace
+- [x] **WKSP-04**: User can delete a workspace (and all its boards)
 
 ### Boards
 
@@ -134,10 +134,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CLI-02 | Phase 2 | Complete |
 | CLI-03 | Phase 2 | Complete |
 | CLI-04 | Phase 2 | Complete |
-| WKSP-01 | Phase 3 | Pending |
-| WKSP-02 | Phase 3 | Pending |
-| WKSP-03 | Phase 3 | Pending |
-| WKSP-04 | Phase 3 | Pending |
+| WKSP-01 | Phase 3 | Complete |
+| WKSP-02 | Phase 3 | Complete |
+| WKSP-03 | Phase 3 | Complete |
+| WKSP-04 | Phase 3 | Complete |
 | BORD-01 | Phase 3 | Pending |
 | BORD-02 | Phase 3 | Pending |
 | BORD-03 | Phase 3 | Pending |
