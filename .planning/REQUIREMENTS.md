@@ -121,13 +121,56 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated by roadmap) | | |
+| API-01 | Phase 1 | Pending |
+| API-02 | Phase 1 | Pending |
+| API-03 | Phase 1 | Pending |
+| API-04 | Phase 1 | Pending |
+| AUTH-06 | Phase 1 | Pending |
+| AUTH-01 | Phase 2 | Pending |
+| AUTH-02 | Phase 2 | Pending |
+| AUTH-03 | Phase 2 | Pending |
+| AUTH-04 | Phase 2 | Pending |
+| AUTH-05 | Phase 2 | Pending |
+| CLI-02 | Phase 2 | Pending |
+| CLI-03 | Phase 2 | Pending |
+| CLI-04 | Phase 2 | Pending |
+| WKSP-01 | Phase 3 | Pending |
+| WKSP-02 | Phase 3 | Pending |
+| WKSP-03 | Phase 3 | Pending |
+| WKSP-04 | Phase 3 | Pending |
+| BORD-01 | Phase 3 | Pending |
+| BORD-02 | Phase 3 | Pending |
+| BORD-03 | Phase 3 | Pending |
+| BORD-04 | Phase 3 | Pending |
+| BORD-05 | Phase 3 | Pending |
+| COLM-01 | Phase 3 | Pending |
+| COLM-02 | Phase 3 | Pending |
+| COLM-03 | Phase 3 | Pending |
+| COLM-04 | Phase 3 | Pending |
+| CLI-01 | Phase 3 | Pending |
+| CLI-05 | Phase 3 | Pending |
+| CLI-06 | Phase 3 | Pending |
+| CLI-07 | Phase 3 | Pending |
+| ITEM-01 | Phase 4 | Pending |
+| ITEM-02 | Phase 4 | Pending |
+| ITEM-03 | Phase 4 | Pending |
+| ITEM-04 | Phase 4 | Pending |
+| ITEM-05 | Phase 4 | Pending |
+| ITEM-06 | Phase 4 | Pending |
+| ITEM-07 | Phase 4 | Pending |
+| ITEM-08 | Phase 4 | Pending |
+| WEB-01 | Phase 5 | Pending |
+| WEB-02 | Phase 5 | Pending |
+| WEB-03 | Phase 5 | Pending |
+| WEB-04 | Phase 5 | Pending |
+| WEB-05 | Phase 5 | Pending |
+| WEB-06 | Phase 5 | Pending |
 
 **Coverage:**
-- v1 requirements: 30 total
-- Mapped to phases: 0
-- Unmapped: 30 ⚠️
+- v1 requirements: 44 total
+- Mapped to phases: 44
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-25*
-*Last updated: 2026-03-25 after initial definition*
+*Last updated: 2026-03-25 after roadmap creation*
