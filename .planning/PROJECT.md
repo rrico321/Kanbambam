@@ -12,7 +12,8 @@ Kanban board management from the command line that stays perfectly in sync with 
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] Cloud API backend serving both CLI and web app — Validated in Phase 1: Foundation & API
+- [x] Workspace → Board → Column → Item hierarchy — Validated in Phase 1: Foundation & API
 
 ### Active
 
