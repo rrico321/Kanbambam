@@ -13,7 +13,7 @@ Kanbambam delivers CLI-first Kanban board management backed by a cloud API, with
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Foundation & API** - Monorepo, shared Zod schemas, database, REST API with full CRUD and JWT auth
-- [ ] **Phase 2: Authentication Flows** - User signup/login via web, browser-based CLI auth, session persistence
+- [x] **Phase 2: Authentication Flows** - User signup/login via web, browser-based CLI auth, session persistence (completed 2026-03-26)
 - [ ] **Phase 3: Core Kanban CLI** - Workspace, board, and column CRUD via CLI commands with context system
 - [ ] **Phase 4: Item Management** - Full item lifecycle via CLI (create, edit, move, labels, due dates)
 - [ ] **Phase 5: Web App** - Trello-style board view with drag-and-drop, inline editing, and workspace navigation
@@ -54,7 +54,7 @@ Plans:
 - [x] 02-01-PLAN.md — API logout endpoint, CLI package scaffold, token config, API client with auto-refresh, output formatter
 - [x] 02-02-PLAN.md — Next.js web app scaffold with auth pages (login, signup, callback, logout)
 - [x] 02-03-PLAN.md — CLI auth commands (login with browser callback, logout, status)
-- [ ] 02-04-PLAN.md — Gap closure: wire Ink rendering, fix status test, update requirements tracking
+- [x] 02-04-PLAN.md — Gap closure: wire Ink rendering, fix status test, update requirements tracking
 
 ### Phase 3: Core Kanban CLI
 **Goal**: Users can manage their complete workspace/board/column hierarchy entirely from the terminal
@@ -116,7 +116,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & API | 4/4 | In Progress|  |
-| 2. Authentication Flows | 3/4 | In progress | - |
+| 2. Authentication Flows | 4/4 | Complete   | 2026-03-26 |
 | 3. Core Kanban CLI | 0/3 | Not started | - |
 | 4. Item Management | 0/3 | Not started | - |
 | 5. Web App | 0/3 | Not started | - |
