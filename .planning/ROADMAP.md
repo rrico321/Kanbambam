@@ -72,7 +72,7 @@ Plans:
 - [x] 03-01-PLAN.md — Shared CLI infrastructure (config, context helpers, Ink components) and context commands
 - [x] 03-02-PLAN.md — Workspace CRUD commands (create, list, rename, delete)
 - [x] 03-03-PLAN.md — Board CRUD commands (create with default columns, list, rename, delete)
-- [ ] 03-04-PLAN.md — Column CRUD commands (add, rename, reorder, delete with safe item handling)
+- [x] 03-04-PLAN.md — Column CRUD commands (add, rename, reorder, delete with safe item handling)
 
 ### Phase 4: Item Management
 **Goal**: Users can manage the full lifecycle of Kanban items from the terminal -- creating, editing, moving, labeling, and scheduling
@@ -118,6 +118,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Foundation & API | 4/4 | In Progress|  |
 | 2. Authentication Flows | 4/4 | Complete   | 2026-03-26 |
-| 3. Core Kanban CLI | 2/4 | In Progress|  |
+| 3. Core Kanban CLI | 4/4 | In Progress|  |
 | 4. Item Management | 0/3 | Not started | - |
 | 5. Web App | 0/3 | Not started | - |
