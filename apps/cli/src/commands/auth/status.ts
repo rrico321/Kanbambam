@@ -1,5 +1,36 @@
 import type { GlobalOptions } from '../../types.js'
+import { config, hasTokens } from '../../lib/config.js'
+import { detectOutputMode, outputJson, outputPlain } from '../../lib/output.js'
 
-export async function statusCommand(_globalOptions: GlobalOptions): Promise<void> {
-	console.log('Status command not yet implemented. See Phase 2 Plan 03.')
+export async function statusCommand(globalOptions: GlobalOptions): Promise<void> {
+	const mode = detectOutputMode(globalOptions)
+	const authenticated = hasTokens()
+
+	if (!authenticated) {
+		if (mode === 'json') {
+			outputJson({ authenticated: false }, {})
+		} else {
+			outputPlain('Not logged in. Run kanbambam auth login to authenticate.')
+		}
+		return
+	}
+
+	// Decode JWT to extract info if possible
+	let userId: string | undefined
+	try {
+		const { decodeJwt } = await import('jose')
+		const accessToken = config.get('accessToken')
+		if (accessToken) {
+			const claims = decodeJwt(accessToken)
+			userId = claims.sub as string | undefined
+		}
+	} catch {
+		// Token might be malformed, that's ok
+	}
+
+	if (mode === 'json') {
+		outputJson({ authenticated: true, ...(userId ? { userId } : {}) }, {})
+	} else {
+		outputPlain(userId ? `Logged in (user: ${userId}).` : 'Logged in.')
+	}
 }
