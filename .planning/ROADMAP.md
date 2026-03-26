@@ -30,12 +30,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. List endpoints return paginated results
   4. A valid JWT is required for all data endpoints, and requests without one are rejected with 401
   5. The monorepo builds successfully with shared Zod schemas consumed by the API package
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md — Monorepo setup, shared Zod schemas, Drizzle database schema, dev tooling
+- [ ] 01-02-PLAN.md — API server core, auth middleware, auth routes (signup/login/refresh), lib helpers
+- [ ] 01-03-PLAN.md — Entity CRUD routes (workspaces, boards, columns, items) with pagination and fractional indexing
 
 ### Phase 2: Authentication Flows
 **Goal**: Users can create accounts, log in through the web and CLI, and stay authenticated across sessions on both interfaces
