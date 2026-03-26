@@ -16,7 +16,7 @@ export const workspacesApp = new OpenAPIHono()
 
 workspacesApp.openapi(listWorkspacesRoute, async (c) => {
 	const { cursor, limit } = c.req.valid('query')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 
 	const conditions = [eq(workspaces.userId, userId)]
 	if (cursor) {
@@ -56,7 +56,7 @@ workspacesApp.openapi(listWorkspacesRoute, async (c) => {
 
 workspacesApp.openapi(createWorkspaceRoute, async (c) => {
 	const { name } = c.req.valid('json')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 	const id = generateId('workspace')
 	const now = new Date()
 
@@ -85,7 +85,7 @@ workspacesApp.openapi(createWorkspaceRoute, async (c) => {
 
 workspacesApp.openapi(getWorkspaceRoute, async (c) => {
 	const { id } = c.req.valid('param')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 
 	const rows = await db
 		.select()
@@ -124,7 +124,7 @@ workspacesApp.openapi(getWorkspaceRoute, async (c) => {
 workspacesApp.openapi(updateWorkspaceRoute, async (c) => {
 	const { id } = c.req.valid('param')
 	const { name } = c.req.valid('json')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 	const now = new Date()
 
 	const rows = await db
@@ -164,7 +164,7 @@ workspacesApp.openapi(updateWorkspaceRoute, async (c) => {
 
 workspacesApp.openapi(deleteWorkspaceRoute, async (c) => {
 	const { id } = c.req.valid('param')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 
 	const rows = await db
 		.delete(workspaces)
