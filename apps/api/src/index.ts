@@ -1,2 +1,7 @@
-// API entry point - will be implemented in plan 01-02
-export { env } from './env'
+import { serve } from '@hono/node-server'
+import { app } from './app'
+import { env } from './env'
+
+serve({ fetch: app.fetch, port: env.PORT }, (info) => {
+	console.log(`Kanbambam API running on http://localhost:${info.port}`)
+})
