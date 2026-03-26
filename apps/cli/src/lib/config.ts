@@ -1,9 +1,16 @@
 import Conf from 'conf'
 
+export interface ContextEntry {
+	id: string
+	name: string
+}
+
 interface KanbambamConfig {
 	accessToken?: string
 	refreshToken?: string
 	apiBaseUrl: string
+	activeWorkspace?: ContextEntry
+	activeBoard?: ContextEntry
 }
 
 export const config = new Conf<KanbambamConfig>({
@@ -20,4 +27,9 @@ export function clearTokens(): void {
 
 export function hasTokens(): boolean {
 	return !!(config.get('accessToken') && config.get('refreshToken'))
+}
+
+export function clearContext(): void {
+	config.delete('activeWorkspace')
+	config.delete('activeBoard')
 }
