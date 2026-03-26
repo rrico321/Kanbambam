@@ -52,7 +52,7 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — API logout endpoint, CLI package scaffold, token config, API client with auto-refresh, output formatter
-- [ ] 02-02-PLAN.md — Next.js web app scaffold with auth pages (login, signup, callback, logout)
+- [x] 02-02-PLAN.md — Next.js web app scaffold with auth pages (login, signup, callback, logout)
 - [ ] 02-03-PLAN.md — CLI auth commands (login with browser callback, logout, status)
 
 ### Phase 3: Core Kanban CLI
