@@ -22,10 +22,10 @@
 
 ### Columns
 
-- [ ] **COLM-01**: User can add a column to a board
-- [ ] **COLM-02**: User can rename a column
-- [ ] **COLM-03**: User can reorder columns within a board
-- [ ] **COLM-04**: User can delete a column (moves items to a target column or deletes them)
+- [x] **COLM-01**: User can add a column to a board
+- [x] **COLM-02**: User can rename a column
+- [x] **COLM-03**: User can reorder columns within a board
+- [x] **COLM-04**: User can delete a column (moves items to a target column or deletes them)
 
 ### Items
 
@@ -143,10 +143,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BORD-03 | Phase 3 | Complete |
 | BORD-04 | Phase 3 | Complete |
 | BORD-05 | Phase 3 | Complete |
-| COLM-01 | Phase 3 | Pending |
-| COLM-02 | Phase 3 | Pending |
-| COLM-03 | Phase 3 | Pending |
-| COLM-04 | Phase 3 | Pending |
+| COLM-01 | Phase 3 | Complete |
+| COLM-02 | Phase 3 | Complete |
+| COLM-03 | Phase 3 | Complete |
+| COLM-04 | Phase 3 | Complete |
 | CLI-01 | Phase 3 | Pending |
 | CLI-05 | Phase 3 | Complete |
 | CLI-06 | Phase 3 | Complete |
