@@ -132,7 +132,6 @@ board
 	.argument('<id>', 'Board ID')
 	.option('-n, --name <name>', 'New name')
 	.action(async (id: string, options: { name?: string }) => {
-		// @ts-expect-error -- implemented in Plan 03
 		const { boardRenameCommand } = await import('./commands/board/rename.js')
 		await boardRenameCommand(id, options, program.opts())
 	})
@@ -143,7 +142,6 @@ board
 	.argument('<id>', 'Board ID')
 	.option('-f, --force', 'Skip confirmation prompt')
 	.action(async (id: string, options: { force?: boolean }) => {
-		// @ts-expect-error -- implemented in Plan 03
 		const { boardDeleteCommand } = await import('./commands/board/delete.js')
 		await boardDeleteCommand(id, options, program.opts())
 	})

@@ -27,10 +27,10 @@ export async function boardListCommand(
 
 	if (data.length === 0) {
 		if (mode === 'json') {
-			outputJson([], meta)
+			outputJson([], meta as unknown as Record<string, unknown>)
 			return
 		}
-		output([], meta, {
+		output([], meta as unknown as Record<string, unknown>, {
 			mode,
 			inkComponent: React.createElement(EmptyState, {
 				message: 'No boards in this workspace.',
@@ -42,7 +42,7 @@ export async function boardListCommand(
 	}
 
 	if (mode === 'json') {
-		outputJson(data, meta)
+		outputJson(data, meta as unknown as Record<string, unknown>)
 		return
 	}
 
