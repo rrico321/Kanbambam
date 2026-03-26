@@ -68,7 +68,6 @@ workspace
 	.description('Create a new workspace')
 	.argument('<name>', 'Workspace name')
 	.action(async (name: string) => {
-		// @ts-expect-error -- implemented in Plan 02
 		const { workspaceCreateCommand } = await import('./commands/workspace/create.js')
 		await workspaceCreateCommand(name, program.opts())
 	})
@@ -77,7 +76,6 @@ workspace
 	.command('list')
 	.description('List all workspaces')
 	.action(async () => {
-		// @ts-expect-error -- implemented in Plan 02
 		const { workspaceListCommand } = await import('./commands/workspace/list.js')
 		await workspaceListCommand(program.opts())
 	})
@@ -88,7 +86,6 @@ workspace
 	.argument('<id>', 'Workspace ID')
 	.option('-n, --name <name>', 'New name')
 	.action(async (id: string, options: { name?: string }) => {
-		// @ts-expect-error -- implemented in Plan 02
 		const { workspaceRenameCommand } = await import('./commands/workspace/rename.js')
 		await workspaceRenameCommand(id, options, program.opts())
 	})
@@ -99,7 +96,6 @@ workspace
 	.argument('<id>', 'Workspace ID')
 	.option('-f, --force', 'Skip confirmation prompt')
 	.action(async (id: string, options: { force?: boolean }) => {
-		// @ts-expect-error -- implemented in Plan 02
 		const { workspaceDeleteCommand } = await import('./commands/workspace/delete.js')
 		await workspaceDeleteCommand(id, options, program.opts())
 	})
