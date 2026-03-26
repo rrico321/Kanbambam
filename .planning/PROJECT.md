@@ -14,16 +14,14 @@ Kanban board management from the command line that stays perfectly in sync with 
 
 - [x] Cloud API backend serving both CLI and web app — Validated in Phase 1: Foundation & API
 - [x] Workspace → Board → Column → Item hierarchy — Validated in Phase 1: Foundation & API
+- [x] Browser-based login flow for CLI authentication (like `gh auth login`) — Validated in Phase 2: Authentication Flows
+- [x] User signup and account management — Validated in Phase 2: Authentication Flows
 
 ### Active
 
 - [ ] CLI with full Kanban CRUD (workspaces, boards, columns, items)
-- [ ] Cloud API backend serving both CLI and web app
-- [ ] Browser-based login flow for CLI authentication (like `gh auth login`)
-- [ ] User signup and account management
 - [ ] Trello-style drag-and-drop web app
 - [ ] Items with title, description, labels/tags, and due dates
-- [ ] Workspace → Board → Column → Item hierarchy
 - [ ] Move items between columns via CLI
 - [ ] Real-time sync between CLI and web app (same API, same data)
 
@@ -78,4 +76,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-25 after initialization*
+*Last updated: 2026-03-26 after Phase 2 completion*
