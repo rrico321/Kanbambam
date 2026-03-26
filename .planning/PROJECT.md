@@ -19,11 +19,14 @@ Kanban board management from the command line that stays perfectly in sync with 
 
 ### Active
 
-- [ ] CLI with full Kanban CRUD (workspaces, boards, columns, items)
 - [ ] Trello-style drag-and-drop web app
-- [ ] Items with title, description, labels/tags, and due dates
-- [ ] Move items between columns via CLI
 - [ ] Real-time sync between CLI and web app (same API, same data)
+
+### Validated in Phase 4: Item Management
+
+- [x] CLI with full Kanban CRUD (workspaces, boards, columns, items)
+- [x] Items with title, description, labels/tags, and due dates
+- [x] Move items between columns via CLI
 
 ### Out of Scope
 
