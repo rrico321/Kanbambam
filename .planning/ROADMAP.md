@@ -36,7 +36,7 @@ Plans:
 - [x] 01-01-PLAN.md — Monorepo setup, shared Zod schemas, Drizzle database schema, dev tooling
 - [x] 01-02-PLAN.md — Test infrastructure, API server core, auth middleware, auth routes (signup/login/refresh), lib helpers
 - [ ] 01-03-PLAN.md — Workspace and board CRUD routes with pagination
-- [ ] 01-04-PLAN.md — Column and item CRUD routes with fractional indexing and move endpoint
+- [x] 01-04-PLAN.md — Column and item CRUD routes with fractional indexing and move endpoint
 
 ### Phase 2: Authentication Flows
 **Goal**: Users can create accounts, log in through the web and CLI, and stay authenticated across sessions on both interfaces
