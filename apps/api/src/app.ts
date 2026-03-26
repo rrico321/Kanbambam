@@ -4,6 +4,7 @@ import { requestId } from 'hono/request-id'
 import { authMiddleware } from './middleware/auth'
 import { errorHandler } from './middleware/error-handler'
 import { authApp } from './routes/auth/auth.handlers'
+import { columnsApp } from './routes/columns/columns.handlers'
 
 const app = new OpenAPIHono()
 
@@ -24,7 +25,8 @@ app.use('/api/v1/items/*', authMiddleware)
 // Auth routes (no auth middleware)
 app.route('', authApp)
 
-// Entity route mounting will be added in Plan 03/04
+// Entity routes
+app.route('', columnsApp)
 
 // OpenAPI doc endpoint
 app.doc('/api/docs', {
