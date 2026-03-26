@@ -1,0 +1,29 @@
+{
+	"name": "@kanbambam/cli",
+	"version": "0.0.1",
+	"type": "module",
+	"bin": {
+		"kanbambam": "./dist/index.js"
+	},
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsx src/index.ts",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@kanbambam/shared": "workspace:*",
+		"chalk": "^5",
+		"commander": "^14",
+		"conf": "^15",
+		"ink": "^6",
+		"open": "^11",
+		"react": "^19"
+	},
+	"devDependencies": {
+		"@types/react": "^19",
+		"tsup": "^8",
+		"tsx": "^4",
+		"typescript": "^5.8",
+		"vitest": "^3"
+	}
+}
