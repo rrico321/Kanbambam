@@ -48,8 +48,11 @@ export interface ColumnResponse {
 export interface ItemResponse {
 	id: string
 	title: string
+	description: string | null
 	columnId: string
 	position: string
+	dueDate: string | null
+	labels: string[] | null
 	createdAt: string
 	updatedAt: string
 }

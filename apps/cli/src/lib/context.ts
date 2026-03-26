@@ -17,3 +17,10 @@ export function resolveBoardId(flags: { board?: string }): string {
 		'No board specified. Use --board <id> or set context with: kanbambam context set --board <id>',
 	)
 }
+
+export function resolveColumnId(flags: { column?: string }): string {
+	if (flags.column) return flags.column
+	throw new Error(
+		'No column specified. Use --column <id>. List columns with: kanbambam column list',
+	)
+}
