@@ -1,0 +1,21 @@
+{
+	"name": "kanbambam",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"lint": "biome check .",
+		"lint:fix": "biome check --fix .",
+		"test": "turbo test",
+		"format": "biome format --write .",
+		"db:generate": "pnpm --filter api db:generate",
+		"db:migrate": "pnpm --filter api db:migrate",
+		"db:push": "pnpm --filter api db:push"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.0.0",
+		"turbo": "^2.0.0",
+		"typescript": "^5.8.0"
+	}
+}
