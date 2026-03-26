@@ -57,7 +57,7 @@ Exceptions: none
 | Role | Size | Weight | Line Height | Tailwind Class |
 |------|------|--------|-------------|----------------|
 | Body | 16px | 400 (regular) | 1.5 | `text-base font-normal leading-normal` |
-| Label | 14px | 500 (medium) | 1.4 | `text-sm font-medium leading-snug` |
+| Label | 14px | 600 (semibold) | 1.4 | `text-sm font-semibold leading-snug` |
 | Heading | 24px | 600 (semibold) | 1.2 | `text-2xl font-semibold leading-tight` |
 | Subtext | 14px | 400 (regular) | 1.5 | `text-sm font-normal leading-normal` |
 
@@ -311,7 +311,7 @@ AuthCard:
 ```
 Input:
   width: 100% (w-full)
-  padding: 10px 12px (px-3 py-2.5)
+  padding: 12px horizontal, 12px vertical (px-3 py-3)
   border: 1px solid #D1D5DB (border border-gray-300)
   border-radius: 8px (rounded-lg)
   font-size: 16px (text-base) -- prevents iOS zoom
@@ -320,7 +320,7 @@ Input:
 
 SubmitButton:
   width: 100% (w-full)
-  padding: 10px (py-2.5)
+  padding: 12px vertical (py-3)
   background: #2563EB (bg-blue-600)
   color: white (text-white)
   font-weight: 600 (font-semibold)
