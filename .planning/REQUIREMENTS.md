@@ -50,8 +50,8 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: User can sign up with email and password via web app
-- [ ] **AUTH-02**: User can log in via web app
+- [x] **AUTH-01**: User can sign up with email and password via web app
+- [x] **AUTH-02**: User can log in via web app
 - [x] **AUTH-03**: User can log out from web app
 - [x] **AUTH-04**: User can authenticate CLI via browser login flow
 - [x] **AUTH-05**: CLI auth token persists across sessions
@@ -126,8 +126,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | API-03 | Phase 1 | Complete |
 | API-04 | Phase 1 | Complete |
 | AUTH-06 | Phase 1 | Complete |
-| AUTH-01 | Phase 2 | Pending |
-| AUTH-02 | Phase 2 | Pending |
+| AUTH-01 | Phase 2 | Complete |
+| AUTH-02 | Phase 2 | Complete |
 | AUTH-03 | Phase 2 | Complete |
 | AUTH-04 | Phase 2 | Complete |
 | AUTH-05 | Phase 2 | Complete |
