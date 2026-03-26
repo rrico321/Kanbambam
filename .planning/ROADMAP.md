@@ -66,12 +66,13 @@ Plans:
   3. User can add, rename, reorder, and delete columns via CLI commands, with item handling on column deletion
   4. User can set an active workspace and board context so subsequent commands do not require repeating IDs
   5. User can view and clear the current context via `kanbambam context` and `kanbambam context clear`
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
-- [ ] 03-03: TBD
+- [ ] 03-01-PLAN.md — Shared CLI infrastructure (config, context helpers, Ink components) and context commands
+- [ ] 03-02-PLAN.md — Workspace CRUD commands (create, list, rename, delete)
+- [ ] 03-03-PLAN.md — Board CRUD commands (create with default columns, list, rename, delete)
+- [ ] 03-04-PLAN.md — Column CRUD commands (add, rename, reorder, delete with safe item handling)
 
 ### Phase 4: Item Management
 **Goal**: Users can manage the full lifecycle of Kanban items from the terminal -- creating, editing, moving, labeling, and scheduling
@@ -117,6 +118,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Foundation & API | 4/4 | In Progress|  |
 | 2. Authentication Flows | 4/4 | Complete   | 2026-03-26 |
-| 3. Core Kanban CLI | 0/3 | Not started | - |
+| 3. Core Kanban CLI | 0/4 | Not started | - |
 | 4. Item Management | 0/3 | Not started | - |
 | 5. Web App | 0/3 | Not started | - |
