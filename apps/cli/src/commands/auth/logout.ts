@@ -1,6 +1,8 @@
+import React from 'react'
+import { Text } from 'ink'
 import type { GlobalOptions } from '../../types.js'
 import { clearTokens, config, hasTokens } from '../../lib/config.js'
-import { detectOutputMode, outputJson, outputPlain } from '../../lib/output.js'
+import { detectOutputMode, outputJson, outputPlain, outputInk } from '../../lib/output.js'
 
 export async function logoutCommand(globalOptions: GlobalOptions): Promise<void> {
 	const mode = detectOutputMode(globalOptions)
@@ -8,6 +10,8 @@ export async function logoutCommand(globalOptions: GlobalOptions): Promise<void>
 	if (!hasTokens()) {
 		if (mode === 'json') {
 			outputJson({ message: 'Not currently logged in' }, {})
+		} else if (mode === 'ink') {
+			outputInk(React.createElement(Text, { dimColor: true }, 'Not currently logged in.'))
 		} else {
 			outputPlain('Not currently logged in.')
 		}
@@ -33,6 +37,8 @@ export async function logoutCommand(globalOptions: GlobalOptions): Promise<void>
 
 	if (mode === 'json') {
 		outputJson({ message: 'Logged out successfully' }, {})
+	} else if (mode === 'ink') {
+		outputInk(React.createElement(Text, { color: 'green', bold: true }, 'Logged out successfully.'))
 	} else {
 		outputPlain('Logged out successfully.')
 	}

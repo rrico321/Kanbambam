@@ -1,6 +1,8 @@
+import React from 'react'
 import type { GlobalOptions } from '../../types.js'
 import { config, hasTokens } from '../../lib/config.js'
-import { detectOutputMode, outputJson, outputPlain } from '../../lib/output.js'
+import { detectOutputMode, outputJson, outputPlain, outputInk } from '../../lib/output.js'
+import { AuthStatus } from '../../components/AuthStatus.js'
 
 export async function statusCommand(globalOptions: GlobalOptions): Promise<void> {
 	const mode = detectOutputMode(globalOptions)
@@ -9,6 +11,8 @@ export async function statusCommand(globalOptions: GlobalOptions): Promise<void>
 	if (!authenticated) {
 		if (mode === 'json') {
 			outputJson({ authenticated: false }, {})
+		} else if (mode === 'ink') {
+			outputInk(React.createElement(AuthStatus, { authenticated: false }))
 		} else {
 			outputPlain('Not logged in. Run kanbambam auth login to authenticate.')
 		}
@@ -30,6 +34,8 @@ export async function statusCommand(globalOptions: GlobalOptions): Promise<void>
 
 	if (mode === 'json') {
 		outputJson({ authenticated: true, ...(userId ? { userId } : {}) }, {})
+	} else if (mode === 'ink') {
+		outputInk(React.createElement(AuthStatus, { authenticated: true }))
 	} else {
 		outputPlain(userId ? `Logged in (user: ${userId}).` : 'Logged in.')
 	}
