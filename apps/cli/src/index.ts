@@ -142,6 +142,15 @@ board
 		await boardDeleteCommand(id, options, program.opts())
 	})
 
+board
+	.command('view')
+	.description('View board as Kanban layout')
+	.option('-b, --board <id>', 'Board ID (or use context)')
+	.action(async (options: { board?: string }) => {
+		const { boardViewCommand } = await import('./commands/board/view.js')
+		await boardViewCommand(options, program.opts())
+	})
+
 // Column commands
 const column = program.command('column').description('Manage columns')
 
@@ -184,6 +193,85 @@ column
 	.action(async (id: string, options: { force?: boolean; moveTo?: string }) => {
 const { columnDeleteCommand } = await import('./commands/column/delete.js')
 		await columnDeleteCommand(id, options, program.opts())
+	})
+
+// Item commands
+function collect(value: string, previous: string[]) {
+	return previous.concat([value])
+}
+
+const item = program.command('item').description('Manage items')
+
+item
+	.command('create')
+	.description('Create a new item')
+	.argument('<title>', 'Item title')
+	.option('-c, --column <id>', 'Column ID (required)')
+	.option('-d, --description <text>', 'Item description')
+	.action(async (title: string, options: { column?: string; description?: string }) => {
+		const { itemCreateCommand } = await import('./commands/item/create.js')
+		await itemCreateCommand(title, options, program.opts())
+	})
+
+item
+	.command('list')
+	.description('List items in a column')
+	.option('-c, --column <id>', 'Column ID (required)')
+	.action(async (options: { column?: string }) => {
+		const { itemListCommand } = await import('./commands/item/list.js')
+		await itemListCommand(options, program.opts())
+	})
+
+item
+	.command('show')
+	.description('Show item details')
+	.argument('<id>', 'Item ID')
+	.action(async (id: string) => {
+		const { itemShowCommand } = await import('./commands/item/show.js')
+		await itemShowCommand(id, program.opts())
+	})
+
+item
+	.command('edit')
+	.description('Edit an item')
+	.argument('<id>', 'Item ID')
+	.option('-t, --title <title>', 'New title')
+	.option('-d, --description <text>', 'Description (empty string to clear)')
+	.option('-l, --label <tag>', 'Label (repeatable, replaces all)', collect, [])
+	.option('--due-date <date>', 'Due date YYYY-MM-DD (empty string to clear)')
+	.action(async (id: string, options: { title?: string; description?: string; label?: string[]; dueDate?: string }) => {
+		const { itemEditCommand } = await import('./commands/item/edit.js')
+		await itemEditCommand(id, options, program.opts())
+	})
+
+item
+	.command('move')
+	.description('Move item to another column')
+	.argument('<id>', 'Item ID')
+	.requiredOption('--to <id>', 'Target column ID')
+	.action(async (id: string, options: { to: string }) => {
+		const { itemMoveCommand } = await import('./commands/item/move.js')
+		await itemMoveCommand(id, options, program.opts())
+	})
+
+item
+	.command('reorder')
+	.description('Reorder item within its column')
+	.argument('<id>', 'Item ID')
+	.requiredOption('-p, --position <n>', 'New position (1-based)')
+	.action(async (id: string, options: { position: string }) => {
+		const { itemReorderCommand } = await import('./commands/item/reorder.js')
+		await itemReorderCommand(id, options, program.opts())
+	})
+
+item
+	.command('delete')
+	.description('Delete an item')
+	.argument('<id>', 'Item ID')
+	.option('-f, --force', 'Skip confirmation prompt')
+	.action(async (id: string, options: { force?: boolean }) => {
+		const { itemDeleteCommand } = await import('./commands/item/delete.js')
+		await itemDeleteCommand(id, options, program.opts())
 	})
 
 program.parse()
