@@ -1,5 +1,5 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
-import { and, asc, count, desc, eq, gt } from 'drizzle-orm'
+import { and, asc, count, desc, eq, gt, sql } from 'drizzle-orm'
 import { db } from '../../db'
 import { boards, columns, workspaces } from '../../db/schema'
 import { generateId } from '../../lib/id'
@@ -75,7 +75,7 @@ export const columnsApp = new OpenAPIHono()
 columnsApp.openapi(listColumnsRoute, async (c) => {
 	const { boardId } = c.req.valid('param')
 	const { cursor, limit } = c.req.valid('query')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 
 	const board = await verifyBoardOwnership(boardId, userId)
 	if (!board) {
@@ -100,7 +100,9 @@ columnsApp.openapi(listColumnsRoute, async (c) => {
 			.from(columns)
 			.where(eq(columns.id, decodedId))
 		if (cursorCol.length > 0) {
-			conditions.push(gt(columns.position, cursorCol[0].position))
+			conditions.push(
+				sql`${columns.position} COLLATE "C" > ${cursorCol[0].position} COLLATE "C"`,
+			)
 		}
 	}
 
@@ -109,7 +111,7 @@ columnsApp.openapi(listColumnsRoute, async (c) => {
 			.select()
 			.from(columns)
 			.where(and(...conditions))
-			.orderBy(asc(columns.position))
+			.orderBy(sql`${columns.position} COLLATE "C" ASC`)
 			.limit(limit + 1),
 		db
 			.select({ count: count() })
@@ -137,7 +139,7 @@ columnsApp.openapi(listColumnsRoute, async (c) => {
 columnsApp.openapi(createColumnRoute, async (c) => {
 	const { boardId } = c.req.valid('param')
 	const { name } = c.req.valid('json')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 
 	const board = await verifyBoardOwnership(boardId, userId)
 	if (!board) {
@@ -158,7 +160,7 @@ columnsApp.openapi(createColumnRoute, async (c) => {
 		.select({ position: columns.position })
 		.from(columns)
 		.where(eq(columns.boardId, boardId))
-		.orderBy(desc(columns.position))
+		.orderBy(sql`${columns.position} COLLATE "C" DESC`)
 		.limit(1)
 
 	const position = appendPosition(lastCol.length > 0 ? lastCol[0].position : null)
@@ -186,7 +188,7 @@ columnsApp.openapi(createColumnRoute, async (c) => {
 // GET /api/v1/columns/:id
 columnsApp.openapi(getColumnRoute, async (c) => {
 	const { id } = c.req.valid('param')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 
 	const col = await verifyColumnOwnership(id, userId)
 	if (!col) {
@@ -215,7 +217,7 @@ columnsApp.openapi(getColumnRoute, async (c) => {
 columnsApp.openapi(updateColumnRoute, async (c) => {
 	const { id } = c.req.valid('param')
 	const body = c.req.valid('json')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 
 	const col = await verifyColumnOwnership(id, userId)
 	if (!col) {
@@ -250,7 +252,7 @@ columnsApp.openapi(updateColumnRoute, async (c) => {
 // DELETE /api/v1/columns/:id
 columnsApp.openapi(deleteColumnRoute, async (c) => {
 	const { id } = c.req.valid('param')
-	const userId = c.get('jwtPayload').sub as string
+	const userId = (c.get('jwtPayload') as { sub: string }).sub
 
 	const col = await verifyColumnOwnership(id, userId)
 	if (!col) {

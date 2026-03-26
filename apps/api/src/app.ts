@@ -5,6 +5,7 @@ import { authMiddleware } from './middleware/auth'
 import { errorHandler } from './middleware/error-handler'
 import { authApp } from './routes/auth/auth.handlers'
 import { columnsApp } from './routes/columns/columns.handlers'
+import { itemsApp } from './routes/items/items.handlers'
 
 const app = new OpenAPIHono()
 
@@ -27,6 +28,7 @@ app.route('', authApp)
 
 // Entity routes
 app.route('', columnsApp)
+app.route('', itemsApp)
 
 // OpenAPI doc endpoint
 app.doc('/api/docs', {
