@@ -51,7 +51,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — API logout endpoint, CLI package scaffold, token config, API client with auto-refresh, output formatter
+- [x] 02-01-PLAN.md — API logout endpoint, CLI package scaffold, token config, API client with auto-refresh, output formatter
 - [ ] 02-02-PLAN.md — Next.js web app scaffold with auth pages (login, signup, callback, logout)
 - [ ] 02-03-PLAN.md — CLI auth commands (login with browser callback, logout, status)
 
@@ -115,7 +115,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & API | 4/4 | In Progress|  |
-| 2. Authentication Flows | 0/3 | Not started | - |
+| 2. Authentication Flows | 1/3 | In progress | - |
 | 3. Core Kanban CLI | 0/3 | Not started | - |
 | 4. Item Management | 0/3 | Not started | - |
 | 5. Web App | 0/3 | Not started | - |
