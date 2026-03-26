@@ -20,10 +20,7 @@ describe('loginCommand', () => {
 	it('starts HTTP server on a random port', async () => {
 		const { loginCommand } = await import('../login.js')
 
-		// Start login but cancel quickly via abort
-		const controller = new AbortController()
-
-		// Override open to capture the URL and immediately trigger abort
+		// Override open to capture the URL and verify port
 		const openMod = await import('open')
 		const openFn = openMod.default as ReturnType<typeof vi.fn>
 		openFn.mockImplementation(async (url: string) => {
@@ -33,13 +30,10 @@ describe('loginCommand', () => {
 			const port = Number.parseInt(match![1], 10)
 			expect(port).toBeGreaterThan(0)
 			expect(port).toBeLessThan(65536)
-
-			// Abort to stop the login flow
-			controller.abort()
 		})
 
-		// loginCommand should handle AbortError or timeout gracefully
-		await loginCommand({ manual: false }, { json: true }).catch(() => {})
+		// Use short timeout so the test doesn't hang
+		await loginCommand({ manual: false, _testTimeout: 300 } as any, { json: true }).catch(() => {})
 	})
 
 	it('opens browser with correct URL containing cli_callback and state params', async () => {
