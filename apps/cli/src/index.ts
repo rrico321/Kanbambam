@@ -151,8 +151,7 @@ column
 	.argument('<name>', 'Column name')
 	.option('-b, --board <id>', 'Board ID (or use context)')
 	.action(async (name: string, options: { board?: string }) => {
-		// @ts-expect-error -- implemented in Plan 04
-		const { columnAddCommand } = await import('./commands/column/add.js')
+const { columnAddCommand } = await import('./commands/column/add.js')
 		await columnAddCommand(name, options, program.opts())
 	})
 
@@ -162,8 +161,7 @@ column
 	.argument('<id>', 'Column ID')
 	.option('-n, --name <name>', 'New name')
 	.action(async (id: string, options: { name?: string }) => {
-		// @ts-expect-error -- implemented in Plan 04
-		const { columnRenameCommand } = await import('./commands/column/rename.js')
+const { columnRenameCommand } = await import('./commands/column/rename.js')
 		await columnRenameCommand(id, options, program.opts())
 	})
 
@@ -173,8 +171,7 @@ column
 	.argument('<id>', 'Column ID')
 	.requiredOption('-p, --position <n>', 'New position (1-based)')
 	.action(async (id: string, options: { position: string }) => {
-		// @ts-expect-error -- implemented in Plan 04
-		const { columnReorderCommand } = await import('./commands/column/reorder.js')
+const { columnReorderCommand } = await import('./commands/column/reorder.js')
 		await columnReorderCommand(id, options, program.opts())
 	})
 
@@ -185,8 +182,7 @@ column
 	.option('-f, --force', 'Skip confirmation and delete items')
 	.option('--move-to <id>', 'Move items to this column before deleting')
 	.action(async (id: string, options: { force?: boolean; moveTo?: string }) => {
-		// @ts-expect-error -- implemented in Plan 04
-		const { columnDeleteCommand } = await import('./commands/column/delete.js')
+const { columnDeleteCommand } = await import('./commands/column/delete.js')
 		await columnDeleteCommand(id, options, program.opts())
 	})
 

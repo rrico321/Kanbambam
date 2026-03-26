@@ -180,7 +180,7 @@ describe('columnDeleteCommand', () => {
 		})
 
 		const output = consoleSpy.mock.calls.map((c) => c[0]).join('\n')
-		expect(output).toContain('Moved 2 items')
+		expect(output).toContain('"itemsMoved": 2')
 		consoleSpy.mockRestore()
 	})
 

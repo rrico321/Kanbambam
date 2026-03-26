@@ -99,6 +99,9 @@ importers:
       conf:
         specifier: ^15
         version: 15.1.0
+      fractional-indexing:
+        specifier: ^3.2.0
+        version: 3.2.0
       ink:
         specifier: ^6
         version: 6.8.0(@types/react@19.2.14)(react@19.2.4)
