@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Monorepo setup, shared Zod schemas, Drizzle database schema, dev tooling
-- [ ] 01-02-PLAN.md — Test infrastructure, API server core, auth middleware, auth routes (signup/login/refresh), lib helpers
+- [x] 01-02-PLAN.md — Test infrastructure, API server core, auth middleware, auth routes (signup/login/refresh), lib helpers
 - [ ] 01-03-PLAN.md — Workspace and board CRUD routes with pagination
 - [ ] 01-04-PLAN.md — Column and item CRUD routes with fractional indexing and move endpoint
 

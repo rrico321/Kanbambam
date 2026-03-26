@@ -55,7 +55,7 @@
 - [ ] **AUTH-03**: User can log out from web app
 - [ ] **AUTH-04**: User can authenticate CLI via browser login flow
 - [ ] **AUTH-05**: CLI auth token persists across sessions
-- [ ] **AUTH-06**: User session stays active across browser refresh (JWT)
+- [x] **AUTH-06**: User session stays active across browser refresh (JWT)
 
 ### Web App
 
@@ -69,9 +69,9 @@
 ### API
 
 - [x] **API-01**: REST API serving all CRUD operations for workspaces, boards, columns, and items
-- [ ] **API-02**: JWT-based authentication for both CLI and web clients
+- [x] **API-02**: JWT-based authentication for both CLI and web clients
 - [x] **API-03**: Fractional indexing for item and column ordering (no reindex on every move)
-- [ ] **API-04**: Pagination on list endpoints
+- [x] **API-04**: Pagination on list endpoints
 
 ## v2 Requirements
 
@@ -122,10 +122,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | API-01 | Phase 1 | Complete |
-| API-02 | Phase 1 | Pending |
+| API-02 | Phase 1 | Complete |
 | API-03 | Phase 1 | Complete |
-| API-04 | Phase 1 | Pending |
-| AUTH-06 | Phase 1 | Pending |
+| API-04 | Phase 1 | Complete |
+| AUTH-06 | Phase 1 | Complete |
 | AUTH-01 | Phase 2 | Pending |
 | AUTH-02 | Phase 2 | Pending |
 | AUTH-03 | Phase 2 | Pending |

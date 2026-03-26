@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-01-PLAN.md
-last_updated: "2026-03-26T03:58:04.548Z"
+stopped_at: Completed 01-02-PLAN.md
+last_updated: "2026-03-26T04:07:21.383Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 4
-  completed_plans: 1
-  percent: 0
+  completed_plans: 2
+  percent: 25
 ---
 
 # Project State
@@ -26,8 +26,8 @@ See: .planning/PROJECT.md (updated 2026-03-25)
 ## Current Position
 
 Phase: 01 (foundation-api) — EXECUTING
-Plan: 1 of 4 complete
-Status: Executing Phase 01
+Plan: 2 of 4 complete
+Status: Ready to execute
 Last activity: 2026-03-26
 
 Progress: [██░░░░░░░░] 25%
@@ -53,6 +53,7 @@ Progress: [██░░░░░░░░] 25%
 
 *Updated after each plan completion*
 | Phase 01 P01 | 4min | 2 tasks | 24 files |
+| Phase 01 P02 | 5min | 3 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -65,6 +66,8 @@ Recent decisions affecting current work:
 - Roadmap: 5 phases at standard granularity covering 44 v1 requirements
 - [Phase 01]: Biome 2.4.9 config migrated; files.includes scopes linting to apps/ and packages/
 - [Phase 01]: pnpm onlyBuiltDependencies for argon2/esbuild native builds
+- [Phase 01]: Switched from @neondatabase/serverless to postgres.js for DB driver -- works with both local Docker and Neon
+- [Phase 01]: Auth uses jose SignJWT (HS256) for access tokens, nanoid+SHA-256 for refresh tokens with rotation
 
 ### Pending Todos
 
@@ -78,6 +81,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T03:58:04.545Z
-Stopped at: Completed 01-01-PLAN.md
+Last session: 2026-03-26T04:07:21.380Z
+Stopped at: Completed 01-02-PLAN.md
 Resume file: None
