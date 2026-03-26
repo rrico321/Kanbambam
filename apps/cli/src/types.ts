@@ -19,3 +19,42 @@ export interface ApiError {
 		details?: Record<string, unknown>
 	}
 }
+
+export interface WorkspaceResponse {
+	id: string
+	name: string
+	userId: string
+	createdAt: string
+	updatedAt: string
+}
+
+export interface BoardResponse {
+	id: string
+	name: string
+	workspaceId: string
+	createdAt: string
+	updatedAt: string
+}
+
+export interface ColumnResponse {
+	id: string
+	name: string
+	boardId: string
+	position: string
+	createdAt: string
+	updatedAt: string
+}
+
+export interface ItemResponse {
+	id: string
+	title: string
+	columnId: string
+	position: string
+	createdAt: string
+	updatedAt: string
+}
+
+export interface PaginatedMeta {
+	total: number
+	cursor: string | null
+}
