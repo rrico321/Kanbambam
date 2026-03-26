@@ -71,7 +71,7 @@ Plans:
 Plans:
 - [x] 03-01-PLAN.md — Shared CLI infrastructure (config, context helpers, Ink components) and context commands
 - [x] 03-02-PLAN.md — Workspace CRUD commands (create, list, rename, delete)
-- [ ] 03-03-PLAN.md — Board CRUD commands (create with default columns, list, rename, delete)
+- [x] 03-03-PLAN.md — Board CRUD commands (create with default columns, list, rename, delete)
 - [ ] 03-04-PLAN.md — Column CRUD commands (add, rename, reorder, delete with safe item handling)
 
 ### Phase 4: Item Management

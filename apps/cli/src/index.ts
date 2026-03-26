@@ -109,7 +109,6 @@ board
 	.argument('<name>', 'Board name')
 	.option('-w, --workspace <id>', 'Workspace ID (or use context)')
 	.action(async (name: string, options: { workspace?: string }) => {
-		// @ts-expect-error -- implemented in Plan 03
 		const { boardCreateCommand } = await import('./commands/board/create.js')
 		await boardCreateCommand(name, options, program.opts())
 	})
@@ -119,7 +118,6 @@ board
 	.description('List boards in a workspace')
 	.option('-w, --workspace <id>', 'Workspace ID (or use context)')
 	.action(async (options: { workspace?: string }) => {
-		// @ts-expect-error -- implemented in Plan 03
 		const { boardListCommand } = await import('./commands/board/list.js')
 		await boardListCommand(options, program.opts())
 	})
@@ -130,7 +128,6 @@ board
 	.argument('<id>', 'Board ID')
 	.option('-n, --name <name>', 'New name')
 	.action(async (id: string, options: { name?: string }) => {
-		// @ts-expect-error -- implemented in Plan 03
 		const { boardRenameCommand } = await import('./commands/board/rename.js')
 		await boardRenameCommand(id, options, program.opts())
 	})
@@ -141,7 +138,6 @@ board
 	.argument('<id>', 'Board ID')
 	.option('-f, --force', 'Skip confirmation prompt')
 	.action(async (id: string, options: { force?: boolean }) => {
-		// @ts-expect-error -- implemented in Plan 03
 		const { boardDeleteCommand } = await import('./commands/board/delete.js')
 		await boardDeleteCommand(id, options, program.opts())
 	})
