@@ -48,12 +48,12 @@ Plans:
   3. Running `kanbambam auth login` opens a browser window, and after completing login the CLI receives and stores a token
   4. CLI auth token persists across terminal sessions -- closing and reopening the terminal does not require re-authentication
   5. CLI commands support `--json` flag for structured output and display human-readable formatted output by default
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
-- [ ] 02-03: TBD
+- [ ] 02-01-PLAN.md — API logout endpoint, CLI package scaffold, token config, API client with auto-refresh, output formatter
+- [ ] 02-02-PLAN.md — Next.js web app scaffold with auth pages (login, signup, callback, logout)
+- [ ] 02-03-PLAN.md — CLI auth commands (login with browser callback, logout, status)
 
 ### Phase 3: Core Kanban CLI
 **Goal**: Users can manage their complete workspace/board/column hierarchy entirely from the terminal
