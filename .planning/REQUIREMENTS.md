@@ -44,9 +44,9 @@
 - [x] **CLI-02**: Every command supports `--json` flag for structured JSON output (AI-friendly)
 - [x] **CLI-03**: Human-readable formatted output by default
 - [x] **CLI-04**: Browser-based login flow (`kanbambam auth login` opens browser, receives token)
-- [ ] **CLI-05**: User can set active workspace/board context to avoid repeating IDs
-- [ ] **CLI-06**: User can view current context (`kanbambam context`)
-- [ ] **CLI-07**: User can clear context (`kanbambam context clear`)
+- [x] **CLI-05**: User can set active workspace/board context to avoid repeating IDs
+- [x] **CLI-06**: User can view current context (`kanbambam context`)
+- [x] **CLI-07**: User can clear context (`kanbambam context clear`)
 
 ### Authentication
 
@@ -148,9 +148,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | COLM-03 | Phase 3 | Pending |
 | COLM-04 | Phase 3 | Pending |
 | CLI-01 | Phase 3 | Pending |
-| CLI-05 | Phase 3 | Pending |
-| CLI-06 | Phase 3 | Pending |
-| CLI-07 | Phase 3 | Pending |
+| CLI-05 | Phase 3 | Complete |
+| CLI-06 | Phase 3 | Complete |
+| CLI-07 | Phase 3 | Complete |
 | ITEM-01 | Phase 4 | Pending |
 | ITEM-02 | Phase 4 | Pending |
 | ITEM-03 | Phase 4 | Pending |
