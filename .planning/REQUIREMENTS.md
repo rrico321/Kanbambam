@@ -14,11 +14,11 @@
 
 ### Boards
 
-- [ ] **BORD-01**: User can create a board within a workspace
-- [ ] **BORD-02**: User can list all boards in a workspace
-- [ ] **BORD-03**: User can rename a board
-- [ ] **BORD-04**: User can delete a board (and all its columns/items)
-- [ ] **BORD-05**: New boards are created with default columns (To Do, In Progress, Done)
+- [x] **BORD-01**: User can create a board within a workspace
+- [x] **BORD-02**: User can list all boards in a workspace
+- [x] **BORD-03**: User can rename a board
+- [x] **BORD-04**: User can delete a board (and all its columns/items)
+- [x] **BORD-05**: New boards are created with default columns (To Do, In Progress, Done)
 
 ### Columns
 
@@ -138,11 +138,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | WKSP-02 | Phase 3 | Pending |
 | WKSP-03 | Phase 3 | Pending |
 | WKSP-04 | Phase 3 | Pending |
-| BORD-01 | Phase 3 | Pending |
-| BORD-02 | Phase 3 | Pending |
-| BORD-03 | Phase 3 | Pending |
-| BORD-04 | Phase 3 | Pending |
-| BORD-05 | Phase 3 | Pending |
+| BORD-01 | Phase 3 | Complete |
+| BORD-02 | Phase 3 | Complete |
+| BORD-03 | Phase 3 | Complete |
+| BORD-04 | Phase 3 | Complete |
+| BORD-05 | Phase 3 | Complete |
 | COLM-01 | Phase 3 | Pending |
 | COLM-02 | Phase 3 | Pending |
 | COLM-03 | Phase 3 | Pending |
