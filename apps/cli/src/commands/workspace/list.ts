@@ -13,7 +13,7 @@ export async function workspaceListCommand(globalOptions: GlobalOptions): Promis
 
 	if (data.length === 0) {
 		if (mode === 'json') {
-			outputJson([], meta)
+			outputJson([], meta as unknown as Record<string, unknown>)
 		} else if (mode === 'ink') {
 			outputInk(React.createElement(EmptyState, { message: 'No workspaces yet.', command: 'kanbambam workspace create <name>' }))
 		} else {
@@ -29,7 +29,7 @@ export async function workspaceListCommand(globalOptions: GlobalOptions): Promis
 	const rows = data.map((ws) => ({ id: ws.id, name: ws.name }))
 
 	if (mode === 'json') {
-		outputJson(data, meta)
+		outputJson(data, meta as unknown as Record<string, unknown>)
 	} else if (mode === 'ink') {
 		outputInk(React.createElement(Table, { columns, rows }))
 	} else {
