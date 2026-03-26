@@ -89,7 +89,7 @@ Plans:
 Plans:
 - [x] 04-01-PLAN.md — Fix ItemResponse type, add resolveColumnId, item create/list/show commands with tests
 - [x] 04-02-PLAN.md — Item edit (title, description, labels, due date with clearing) and item delete commands with tests
-- [ ] 04-03-PLAN.md — Item move/reorder, board view command with Kanban layout, register all commands in index.ts
+- [x] 04-03-PLAN.md — Item move/reorder, board view command with Kanban layout, register all commands in index.ts
 
 ### Phase 5: Web App
 **Goal**: Users can interact with their Kanban boards through a polished Trello-style web interface that reflects all data managed via CLI
