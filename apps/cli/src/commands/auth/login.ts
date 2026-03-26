@@ -1,9 +1,11 @@
 import http from 'node:http'
 import crypto from 'node:crypto'
 import readline from 'node:readline'
+import React from 'react'
 import type { GlobalOptions } from '../../types.js'
 import { config } from '../../lib/config.js'
-import { detectOutputMode, outputJson, outputPlain } from '../../lib/output.js'
+import { detectOutputMode, outputJson, outputPlain, outputInk } from '../../lib/output.js'
+import { AuthSuccess } from '../../components/AuthSuccess.js'
 
 const DEFAULT_TIMEOUT_MS = 5 * 60 * 1000
 const WEB_BASE_URL = process.env.WEB_URL || 'http://localhost:3001'
@@ -167,8 +169,6 @@ function outputSuccess(mode: ReturnType<typeof detectOutputMode>): void {
 	} else if (mode === 'plain') {
 		outputPlain('Logged in successfully.')
 	} else {
-		// Ink mode - for now use plain output since we cannot render Ink outside of Ink's render loop easily
-		// In a real CLI, this would use Ink's render() function
-		outputPlain('Logged in successfully.')
+		outputInk(React.createElement(AuthSuccess, {}))
 	}
 }
