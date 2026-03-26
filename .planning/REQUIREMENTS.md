@@ -41,8 +41,8 @@
 ### CLI
 
 - [ ] **CLI-01**: All entity operations available as CLI commands (workspace, board, column, item CRUD)
-- [ ] **CLI-02**: Every command supports `--json` flag for structured JSON output (AI-friendly)
-- [ ] **CLI-03**: Human-readable formatted output by default
+- [x] **CLI-02**: Every command supports `--json` flag for structured JSON output (AI-friendly)
+- [x] **CLI-03**: Human-readable formatted output by default
 - [ ] **CLI-04**: Browser-based login flow (`kanbambam auth login` opens browser, receives token)
 - [ ] **CLI-05**: User can set active workspace/board context to avoid repeating IDs
 - [ ] **CLI-06**: User can view current context (`kanbambam context`)
@@ -52,7 +52,7 @@
 
 - [ ] **AUTH-01**: User can sign up with email and password via web app
 - [ ] **AUTH-02**: User can log in via web app
-- [ ] **AUTH-03**: User can log out from web app
+- [x] **AUTH-03**: User can log out from web app
 - [ ] **AUTH-04**: User can authenticate CLI via browser login flow
 - [ ] **AUTH-05**: CLI auth token persists across sessions
 - [x] **AUTH-06**: User session stays active across browser refresh (JWT)
@@ -128,11 +128,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AUTH-06 | Phase 1 | Complete |
 | AUTH-01 | Phase 2 | Pending |
 | AUTH-02 | Phase 2 | Pending |
-| AUTH-03 | Phase 2 | Pending |
+| AUTH-03 | Phase 2 | Complete |
 | AUTH-04 | Phase 2 | Pending |
 | AUTH-05 | Phase 2 | Pending |
-| CLI-02 | Phase 2 | Pending |
-| CLI-03 | Phase 2 | Pending |
+| CLI-02 | Phase 2 | Complete |
+| CLI-03 | Phase 2 | Complete |
 | CLI-04 | Phase 2 | Pending |
 | WKSP-01 | Phase 3 | Pending |
 | WKSP-02 | Phase 3 | Pending |
