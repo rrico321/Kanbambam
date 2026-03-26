@@ -1,6 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { config, clearTokens, hasTokens } from '../../../lib/config.js'
 
+// Mock ink to avoid yoga-layout WASM loading in tests
+vi.mock('ink', () => ({
+	render: vi.fn(),
+	Text: vi.fn(),
+	Box: vi.fn(),
+}))
+
 // Mock global fetch
 const mockFetch = vi.fn()
 vi.stubGlobal('fetch', mockFetch)
