@@ -29,7 +29,7 @@
 
 ### Items
 
-- [ ] **ITEM-01**: User can create an item in a column with a title
+- [x] **ITEM-01**: User can create an item in a column with a title
 - [ ] **ITEM-02**: User can add/edit a description on an item
 - [ ] **ITEM-03**: User can move an item to a different column
 - [ ] **ITEM-04**: User can reorder items within a column
@@ -151,7 +151,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CLI-05 | Phase 3 | Complete |
 | CLI-06 | Phase 3 | Complete |
 | CLI-07 | Phase 3 | Complete |
-| ITEM-01 | Phase 4 | Pending |
+| ITEM-01 | Phase 4 | Complete |
 | ITEM-02 | Phase 4 | Pending |
 | ITEM-03 | Phase 4 | Pending |
 | ITEM-04 | Phase 4 | Pending |
