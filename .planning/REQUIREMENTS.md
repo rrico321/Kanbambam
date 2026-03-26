@@ -68,9 +68,9 @@
 
 ### API
 
-- [ ] **API-01**: REST API serving all CRUD operations for workspaces, boards, columns, and items
+- [x] **API-01**: REST API serving all CRUD operations for workspaces, boards, columns, and items
 - [ ] **API-02**: JWT-based authentication for both CLI and web clients
-- [ ] **API-03**: Fractional indexing for item and column ordering (no reindex on every move)
+- [x] **API-03**: Fractional indexing for item and column ordering (no reindex on every move)
 - [ ] **API-04**: Pagination on list endpoints
 
 ## v2 Requirements
@@ -121,9 +121,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| API-01 | Phase 1 | Pending |
+| API-01 | Phase 1 | Complete |
 | API-02 | Phase 1 | Pending |
-| API-03 | Phase 1 | Pending |
+| API-03 | Phase 1 | Complete |
 | API-04 | Phase 1 | Pending |
 | AUTH-06 | Phase 1 | Pending |
 | AUTH-01 | Phase 2 | Pending |

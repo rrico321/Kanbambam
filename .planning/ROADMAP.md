@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 4 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Monorepo setup, shared Zod schemas, Drizzle database schema, dev tooling
+- [x] 01-01-PLAN.md — Monorepo setup, shared Zod schemas, Drizzle database schema, dev tooling
 - [ ] 01-02-PLAN.md — Test infrastructure, API server core, auth middleware, auth routes (signup/login/refresh), lib helpers
 - [ ] 01-03-PLAN.md — Workspace and board CRUD routes with pagination
 - [ ] 01-04-PLAN.md — Column and item CRUD routes with fractional indexing and move endpoint
@@ -114,7 +114,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & API | 0/4 | Not started | - |
+| 1. Foundation & API | 1/4 | In Progress|  |
 | 2. Authentication Flows | 0/3 | Not started | - |
 | 3. Core Kanban CLI | 0/3 | Not started | - |
 | 4. Item Management | 0/3 | Not started | - |
