@@ -112,6 +112,48 @@ describe('Auth Routes', () => {
 		})
 	})
 
+	describe('POST /api/v1/auth/logout', () => {
+		it('returns 200 with success message for valid refresh token', async () => {
+			const email = `logout-${Date.now()}@test.com`
+			const signupRes = await jsonRequest(`${API_BASE}/signup`, {
+				email,
+				password: 'password123',
+			})
+			const { refreshToken } = (await signupRes.json()).data
+
+			const res = await jsonRequest(`${API_BASE}/logout`, { refreshToken })
+			expect(res.status).toBe(200)
+			const json = await res.json()
+			expect(json.data.message).toBe('Logged out successfully')
+		})
+
+		it('returns 401 for invalid refresh token', async () => {
+			const res = await jsonRequest(`${API_BASE}/logout`, {
+				refreshToken: 'invalid-token-value',
+			})
+			expect(res.status).toBe(401)
+			const json = await res.json()
+			expect(json.error.code).toBe('INVALID_REFRESH_TOKEN')
+		})
+
+		it('invalidates refresh token so it cannot be used again', async () => {
+			const email = `logout-reuse-${Date.now()}@test.com`
+			const signupRes = await jsonRequest(`${API_BASE}/signup`, {
+				email,
+				password: 'password123',
+			})
+			const { refreshToken } = (await signupRes.json()).data
+
+			// Logout succeeds
+			const logoutRes = await jsonRequest(`${API_BASE}/logout`, { refreshToken })
+			expect(logoutRes.status).toBe(200)
+
+			// Trying to refresh with the same token fails
+			const refreshRes = await jsonRequest(`${API_BASE}/refresh`, { refreshToken })
+			expect(refreshRes.status).toBe(401)
+		})
+	})
+
 	describe('Protected route access', () => {
 		it('access token from signup allows access to protected routes', async () => {
 			const email = `access-${Date.now()}@test.com`

@@ -1,6 +1,6 @@
 import { createRoute, z } from '@hono/zod-openapi'
-import { CreateUserSchema, LoginSchema, AuthTokensSchema } from '@kanbambam/shared'
-import { envelopeSchema, ErrorResponseSchema } from '@kanbambam/shared'
+import { AuthTokensSchema, CreateUserSchema, LoginSchema } from '@kanbambam/shared'
+import { ErrorResponseSchema, MetaSchema, envelopeSchema } from '@kanbambam/shared'
 
 export const signupRoute = createRoute({
 	method: 'post',
@@ -110,6 +110,45 @@ export const refreshRoute = createRoute({
 				},
 			},
 			description: 'Invalid or expired refresh token',
+		},
+	},
+})
+
+export const logoutRoute = createRoute({
+	method: 'post',
+	path: '/api/v1/auth/logout',
+	tags: ['Auth'],
+	summary: 'Revoke refresh token (logout)',
+	request: {
+		body: {
+			content: {
+				'application/json': {
+					schema: z.object({
+						refreshToken: z.string(),
+					}),
+				},
+			},
+		},
+	},
+	responses: {
+		200: {
+			content: {
+				'application/json': {
+					schema: z.object({
+						data: z.object({ message: z.string() }),
+						meta: MetaSchema,
+					}),
+				},
+			},
+			description: 'Logged out successfully',
+		},
+		401: {
+			content: {
+				'application/json': {
+					schema: ErrorResponseSchema,
+				},
+			},
+			description: 'Invalid refresh token',
 		},
 	},
 })

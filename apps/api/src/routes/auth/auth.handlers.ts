@@ -6,7 +6,7 @@ import { refreshTokens, users } from '../../db/schema'
 import { generateId } from '../../lib/id'
 import { createAccessToken, generateRefreshToken, hashToken } from '../../lib/tokens'
 import { env } from '../../env'
-import { loginRoute, refreshRoute, signupRoute } from './auth.routes'
+import { loginRoute, logoutRoute, refreshRoute, signupRoute } from './auth.routes'
 
 function parseExpiry(expiry: string): Date {
 	const match = expiry.match(/^(\d+)([mhd])$/)
@@ -114,6 +114,39 @@ authApp.openapi(loginRoute, async (c) => {
 	return c.json(
 		{
 			data: tokens,
+			meta: { requestId: c.get('requestId') || '' },
+		},
+		200,
+	)
+})
+
+authApp.openapi(logoutRoute, async (c) => {
+	const { refreshToken } = c.req.valid('json')
+	const tokenHash = hashToken(refreshToken)
+
+	const result = await db
+		.select()
+		.from(refreshTokens)
+		.where(eq(refreshTokens.tokenHash, tokenHash))
+
+	if (result.length === 0) {
+		return c.json(
+			{
+				error: {
+					code: 'INVALID_REFRESH_TOKEN',
+					message: 'Invalid or expired refresh token',
+					details: {},
+				},
+			},
+			401,
+		)
+	}
+
+	await db.delete(refreshTokens).where(eq(refreshTokens.id, result[0].id))
+
+	return c.json(
+		{
+			data: { message: 'Logged out successfully' },
 			meta: { requestId: c.get('requestId') || '' },
 		},
 		200,
