@@ -113,7 +113,6 @@ board
 	.argument('<name>', 'Board name')
 	.option('-w, --workspace <id>', 'Workspace ID (or use context)')
 	.action(async (name: string, options: { workspace?: string }) => {
-		// @ts-expect-error -- implemented in Plan 03
 		const { boardCreateCommand } = await import('./commands/board/create.js')
 		await boardCreateCommand(name, options, program.opts())
 	})
@@ -123,7 +122,6 @@ board
 	.description('List boards in a workspace')
 	.option('-w, --workspace <id>', 'Workspace ID (or use context)')
 	.action(async (options: { workspace?: string }) => {
-		// @ts-expect-error -- implemented in Plan 03
 		const { boardListCommand } = await import('./commands/board/list.js')
 		await boardListCommand(options, program.opts())
 	})
