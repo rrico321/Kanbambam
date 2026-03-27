@@ -173,7 +173,7 @@ export function useCreateItem() {
 		mutationFn: ({ columnId, title }: { columnId: string; title: string }) =>
 			api.post<Item>(`/api/v1/columns/${columnId}/items`, { title }),
 		onSuccess: () => {
-			qc.invalidateQueries({ queryKey: ['columns'] })
+			qc.invalidateQueries({ queryKey: ['boards'] })
 			toast.success('Item created')
 		},
 		onError: () => toast.error('Failed to create item'),
@@ -194,7 +194,7 @@ export function useUpdateItem() {
 			labels?: string[] | null
 		}) => api.patch<Item>(`/api/v1/items/${id}`, body),
 		onSuccess: () => {
-			qc.invalidateQueries({ queryKey: ['columns'] })
+			qc.invalidateQueries({ queryKey: ['boards'] })
 			qc.invalidateQueries({ queryKey: ['boards'] })
 		},
 		onError: () => toast.error('Failed to update item'),
@@ -206,7 +206,7 @@ export function useDeleteItem() {
 	return useMutation({
 		mutationFn: (id: string) => api.delete(`/api/v1/items/${id}`),
 		onSuccess: () => {
-			qc.invalidateQueries({ queryKey: ['columns'] })
+			qc.invalidateQueries({ queryKey: ['boards'] })
 			toast.success('Item deleted')
 		},
 		onError: () => toast.error('Failed to delete item'),
@@ -223,7 +223,7 @@ export function useMoveItem() {
 		}: { itemId: string; columnId: string; position: string }) =>
 			api.post(`/api/v1/items/${itemId}/move`, { columnId, position }),
 		onSettled: () => {
-			qc.invalidateQueries({ queryKey: ['columns'] })
+			qc.invalidateQueries({ queryKey: ['boards'] })
 			qc.invalidateQueries({ queryKey: ['boards'] })
 		},
 		onError: () =>
