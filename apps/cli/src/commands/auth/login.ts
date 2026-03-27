@@ -8,7 +8,7 @@ import { detectOutputMode, outputJson, outputPlain, outputInk } from '../../lib/
 import { AuthSuccess } from '../../components/AuthSuccess.js'
 
 const DEFAULT_TIMEOUT_MS = 5 * 60 * 1000
-const WEB_BASE_URL = process.env.WEB_URL || 'http://localhost:3001'
+const WEB_BASE_URL = process.env.WEB_URL || 'https://kanbambam.vercel.app'
 
 interface LoginOptions {
 	manual?: boolean

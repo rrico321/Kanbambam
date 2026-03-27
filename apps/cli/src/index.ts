@@ -2,7 +2,7 @@ import { Command } from 'commander'
 
 const program = new Command()
 
-program.name('kanbambam').description('CLI-first Kanban board management').version('0.0.1')
+program.name('kanbambam').description('CLI-first Kanban board management').version('1.0.0')
 
 program.option('--json', 'Output raw JSON (matches API envelope format)')
 

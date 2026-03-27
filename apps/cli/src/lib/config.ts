@@ -16,7 +16,7 @@ interface KanbambamConfig {
 export const config = new Conf<KanbambamConfig>({
 	projectName: 'kanbambam',
 	defaults: {
-		apiBaseUrl: 'http://localhost:3000',
+		apiBaseUrl: 'https://kanbambam-api.vercel.app',
 	},
 })
 

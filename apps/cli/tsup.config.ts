@@ -7,4 +7,5 @@ export default defineConfig({
 	clean: true,
 	dts: false,
 	banner: { js: '#!/usr/bin/env node' },
+	noExternal: ['@kanbambam/shared'],
 })
