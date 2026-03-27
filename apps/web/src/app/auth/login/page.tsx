@@ -1,5 +1,5 @@
 'use client'
-import { Suspense, useActionState, useEffect } from 'react'
+import { Suspense, useActionState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { AuthCard } from '@/components/AuthCard'
 import { ErrorAlert } from '@/components/ErrorAlert'
@@ -10,20 +10,18 @@ import { type LoginState, loginAction } from './actions'
 
 function LoginForm() {
 	const [state, formAction] = useActionState<LoginState, FormData>(loginAction, {})
-
-	useEffect(() => {
-		if (state.cliRedirect) {
-			window.location.href = state.cliRedirect
-		}
-	}, [state.cliRedirect])
 	const searchParams = useSearchParams()
 	const cliCallback = searchParams.get('cli_callback')
 	const cliState = searchParams.get('state')
+	const errorFromRedirect = searchParams.get('error')
+	const isCli = !!(cliCallback && cliState)
+
+	const displayError = state.error || errorFromRedirect
 
 	return (
 		<AuthCard title="Log in to Kanbambam">
-			{state.error && <ErrorAlert message={state.error} />}
-			<form action={formAction}>
+			{displayError && <ErrorAlert message={displayError} />}
+			<form action={isCli ? '/api/auth/cli-login' : formAction} method={isCli ? 'POST' : undefined}>
 				{cliCallback && <input type="hidden" name="cli_callback" value={cliCallback} />}
 				{cliState && <input type="hidden" name="state" value={cliState} />}
 				<FormField

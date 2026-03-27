@@ -7,14 +7,11 @@ import { setAuthCookies } from '@/lib/auth'
 export interface LoginState {
 	error?: string
 	fieldErrors?: Record<string, string>
-	cliRedirect?: string
 }
 
 export async function loginAction(prevState: LoginState, formData: FormData): Promise<LoginState> {
 	const email = formData.get('email') as string
 	const password = formData.get('password') as string
-	const cliCallback = formData.get('cli_callback') as string | null
-	const state = formData.get('state') as string | null
 
 	const parsed = LoginSchema.safeParse({ email, password })
 	if (!parsed.success) {
@@ -38,14 +35,6 @@ export async function loginAction(prevState: LoginState, formData: FormData): Pr
 	}
 
 	const { accessToken, refreshToken } = result.data!
-
-	if (cliCallback && state) {
-		const callbackUrl = new URL(cliCallback)
-		callbackUrl.searchParams.set('access_token', accessToken)
-		callbackUrl.searchParams.set('refresh_token', refreshToken)
-		callbackUrl.searchParams.set('state', state)
-		return { cliRedirect: callbackUrl.toString() }
-	}
 
 	await setAuthCookies(accessToken, refreshToken)
 	redirect('/')
