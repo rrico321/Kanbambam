@@ -2,15 +2,82 @@
 
 import { useState } from 'react'
 import { DragDropProvider } from '@dnd-kit/react'
+import { Plus } from 'lucide-react'
 import type { Item } from '@kanbambam/shared'
 import { useBoardData } from '@/hooks/use-board-data'
 import { useOptimisticMove } from '@/hooks/use-optimistic-move'
+import { useCreateColumn } from '@/hooks/use-api'
 import { Column } from './Column'
 import { BoardSkeleton } from '@/components/ui/LoadingSkeleton'
 import { EmptyState } from '@/components/ui/EmptyState'
+import { ItemModal } from '@/components/item-detail/ItemModal'
 
 interface BoardViewProps {
 	boardId: string
+}
+
+function AddColumnButton({ boardId }: { boardId: string }) {
+	const createColumn = useCreateColumn()
+	const [isAdding, setIsAdding] = useState(false)
+	const [name, setName] = useState('')
+
+	if (!isAdding) {
+		return (
+			<button
+				onClick={() => setIsAdding(true)}
+				className="w-[280px] flex-shrink-0 h-12 flex items-center justify-center gap-1 rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-400 dark:hover:border-blue-400 transition-colors"
+			>
+				<Plus className="w-4 h-4" /> Add column
+			</button>
+		)
+	}
+
+	return (
+		<div className="w-[280px] flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-xl p-3">
+			<form
+				onSubmit={async (e) => {
+					e.preventDefault()
+					if (!name.trim()) return
+					await createColumn.mutateAsync({ boardId, name: name.trim() })
+					setName('')
+					setIsAdding(false)
+				}}
+			>
+				<input
+					autoFocus
+					value={name}
+					onChange={(e) => setName(e.target.value)}
+					placeholder="Column name..."
+					className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-1.5 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+					onKeyDown={(e) => {
+						if (e.key === 'Escape') {
+							setName('')
+							setIsAdding(false)
+						}
+					}}
+				/>
+				<div className="flex gap-1 mt-2">
+					<button
+						type="submit"
+						disabled={createColumn.isPending || !name.trim()}
+						className="bg-blue-600 dark:bg-blue-500 text-white px-3 py-1 rounded text-xs hover:bg-blue-700 dark:hover:bg-blue-600 disabled:opacity-50"
+					>
+						Add
+					</button>
+					<button
+						type="button"
+						onClick={() => {
+							setName('')
+							setIsAdding(false)
+						}}
+						className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-xs px-2"
+					>
+						Cancel
+					</button>
+				</div>
+			</form>
+		</div>
+	)
 }
 
 export function BoardView({ boardId }: BoardViewProps) {
@@ -21,7 +88,7 @@ export function BoardView({ boardId }: BoardViewProps) {
 		handleDragOver,
 		handleDragEnd,
 	} = useOptimisticMove(columns, itemsByColumn)
-	const [_selectedItem, setSelectedItem] = useState<Item | null>(null)
+	const [selectedItem, setSelectedItem] = useState<Item | null>(null)
 
 	if (isLoading) return <BoardSkeleton />
 
@@ -62,10 +129,12 @@ export function BoardView({ boardId }: BoardViewProps) {
 							onCardClick={(item) => setSelectedItem(item)}
 						/>
 					))}
+					{/* Add column button per D-17 */}
+					<AddColumnButton boardId={boardId} />
 				</div>
 			</DragDropProvider>
 
-			{/* Item detail modal will be wired in Plan 05 */}
+			<ItemModal item={selectedItem} onClose={() => setSelectedItem(null)} />
 		</>
 	)
 }

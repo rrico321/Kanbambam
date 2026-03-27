@@ -4,6 +4,7 @@ import { useDroppable } from '@dnd-kit/react'
 import type { Column as ColumnType, Item } from '@kanbambam/shared'
 import { Card } from './Card'
 import { AddItemForm } from './AddItemForm'
+import { ColumnHeader } from './ColumnHeader'
 
 interface ColumnProps {
 	column: ColumnType
@@ -20,15 +21,8 @@ export function Column({ column, items, onCardClick }: ColumnProps) {
 
 	return (
 		<div className="w-[280px] flex-shrink-0 bg-gray-100 dark:bg-gray-800/50 rounded-xl p-2 flex flex-col max-h-full">
-			{/* Header: name + count */}
-			<div className="flex items-center justify-between px-2 py-2">
-				<div className="flex items-center gap-1">
-					<h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-						{column.name}
-					</h3>
-					<span className="text-xs text-gray-400">{items.length}</span>
-				</div>
-			</div>
+			{/* Header with rename/delete context menu */}
+			<ColumnHeader column={column} itemCount={items.length} />
 
 			{/* Card list */}
 			<div
