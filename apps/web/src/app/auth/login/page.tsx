@@ -1,5 +1,5 @@
 'use client'
-import { useActionState } from 'react'
+import { Suspense, useActionState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { AuthCard } from '@/components/AuthCard'
 import { ErrorAlert } from '@/components/ErrorAlert'
@@ -8,7 +8,7 @@ import { SubmitButton } from '@/components/SubmitButton'
 import { AuthLink } from '@/components/AuthLink'
 import { type LoginState, loginAction } from './actions'
 
-export default function LoginPage() {
+function LoginForm() {
 	const [state, formAction] = useActionState<LoginState, FormData>(loginAction, {})
 	const searchParams = useSearchParams()
 	const cliCallback = searchParams.get('cli_callback')
@@ -37,5 +37,17 @@ export default function LoginPage() {
 			</form>
 			<AuthLink text="Don't have an account?" linkText="Sign up" href="/auth/signup" />
 		</AuthCard>
+	)
+}
+
+export default function LoginPage() {
+	return (
+		<Suspense fallback={
+			<AuthCard title="Log in to Kanbambam">
+				<div className="text-center text-gray-400 py-4">Loading...</div>
+			</AuthCard>
+		}>
+			<LoginForm />
+		</Suspense>
 	)
 }
