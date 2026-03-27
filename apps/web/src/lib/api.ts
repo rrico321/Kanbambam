@@ -1,5 +1,3 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
-
 type ApiError = { code: string; message: string }
 type ApiResult<T> = { data?: T; error?: ApiError }
 
@@ -22,7 +20,7 @@ async function apiFetch<T>(
 	options: RequestInit = {},
 	_isRetry = false,
 ): Promise<ApiResult<T>> {
-	const res = await fetch(`${API_URL}${path}`, {
+	const res = await fetch(path, {
 		...options,
 		headers: {
 			'Content-Type': 'application/json',
