@@ -8,9 +8,8 @@ let refreshPromise: Promise<boolean> | null = null
 
 async function refreshToken(): Promise<boolean> {
 	try {
-		const res = await fetch(`${API_URL}/api/v1/auth/refresh`, {
+		const res = await fetch('/api/auth/refresh', {
 			method: 'POST',
-			credentials: 'include',
 		})
 		return res.ok
 	} catch {

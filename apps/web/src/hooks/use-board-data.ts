@@ -1,8 +1,12 @@
 'use client'
 
+import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 import type { Column, Item } from '@kanbambam/shared'
+
+const EMPTY_COLUMNS: Column[] = []
+const EMPTY_ITEMS: Record<string, Item[]> = {}
 
 export interface BoardData {
 	columns: Column[]
@@ -21,8 +25,11 @@ export function useBoardData(boardId: string): BoardData {
 		},
 	})
 
-	const columns = columnsQuery.data ?? []
-	const sortedColumns = [...columns].sort((a, b) => (a.position < b.position ? -1 : 1))
+	const columns = columnsQuery.data ?? EMPTY_COLUMNS
+	const sortedColumns = useMemo(
+		() => [...columns].sort((a, b) => (a.position < b.position ? -1 : 1)),
+		[columns],
+	)
 
 	const itemsQuery = useQuery({
 		queryKey: ['boards', boardId, 'items', sortedColumns.map((c) => c.id).join(',')],
@@ -42,7 +49,7 @@ export function useBoardData(boardId: string): BoardData {
 
 	return {
 		columns: sortedColumns,
-		itemsByColumn: itemsQuery.data ?? {},
+		itemsByColumn: itemsQuery.data ?? EMPTY_ITEMS,
 		isLoading: columnsQuery.isLoading || itemsQuery.isLoading,
 		error: columnsQuery.error || itemsQuery.error,
 	}
