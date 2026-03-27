@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "tsx watch --env-file=.env src/index.ts",
 		"build": "tsup src/index.ts --format esm --dts",
+		"build:vercel": "tsup src/app.ts --format esm --out-dir api/.build --no-dts",
 		"start": "node dist/index.js",
 		"test": "vitest run",
 		"test:watch": "vitest",

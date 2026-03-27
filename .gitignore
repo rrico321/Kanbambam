@@ -4,3 +4,4 @@ dist/
 .turbo/
 *.tsbuildinfo
 .claude/worktrees/
+apps/api/api/.build/
