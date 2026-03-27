@@ -1,7 +1,7 @@
 import React from 'react'
 import { apiRequest } from '../../lib/api-client.js'
 import { resolveWorkspaceId } from '../../lib/context.js'
-import { detectOutputMode, output, outputJson } from '../../lib/output.js'
+import { detectOutputMode, output, outputJson, outputPlain } from '../../lib/output.js'
 import { SuccessMessage } from '../../components/SuccessMessage.js'
 import type { ApiEnvelope, BoardResponse, GlobalOptions } from '../../types.js'
 
@@ -10,8 +10,21 @@ export async function boardCreateCommand(
 	options: { workspace?: string },
 	globalOptions: GlobalOptions,
 ): Promise<void> {
-	const workspaceId = resolveWorkspaceId(options)
 	const mode = detectOutputMode(globalOptions)
+
+	let workspaceId: string
+	try {
+		workspaceId = resolveWorkspaceId(options)
+	} catch (err) {
+		const message = err instanceof Error ? err.message : 'Failed to resolve workspace'
+		if (mode === 'json') {
+			outputJson({ error: { code: 'NO_WORKSPACE', message } }, {})
+		} else {
+			outputPlain(`Error: ${message}`)
+		}
+		process.exitCode = 1
+		return
+	}
 
 	const response = await apiRequest(`/api/v1/workspaces/${workspaceId}/boards`, {
 		method: 'POST',

@@ -85,6 +85,9 @@ export async function boardViewCommand(
 			} else {
 				for (const item of col.items) {
 					let line = `  ${item.title}`
+					if (item.labels && item.labels.length > 0) {
+						line += ` ${chalk.dim(`[${item.labels.join(', ')}]`)}`
+					}
 					if (item.dueDate) {
 						const colorFn = dueDateColor(item.dueDate)
 						line += ` ${colorFn(item.dueDate.slice(0, 10))}`

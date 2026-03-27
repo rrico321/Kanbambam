@@ -1,5 +1,5 @@
 import React from 'react'
-import type { GlobalOptions, ApiEnvelope, ItemResponse, ApiError } from '../../types.js'
+import type { GlobalOptions, ApiEnvelope, ItemResponse, ColumnResponse, ApiError } from '../../types.js'
 import { apiRequest } from '../../lib/api-client.js'
 import { detectOutputMode, outputJson, outputPlain, outputInk } from '../../lib/output.js'
 import { SuccessMessage } from '../../components/SuccessMessage.js'
@@ -48,11 +48,23 @@ export async function itemMoveCommand(
 
 	const { data, meta } = (await response.json()) as ApiEnvelope<ItemResponse>
 
+	// Fetch column name for display
+	let columnLabel = options.to
+	try {
+		const colResponse = await apiRequest(`/api/v1/columns/${options.to}`)
+		if (colResponse.ok) {
+			const { data: col } = (await colResponse.json()) as ApiEnvelope<ColumnResponse>
+			columnLabel = col.name
+		}
+	} catch {
+		// Fall back to column ID
+	}
+
 	if (mode === 'json') {
 		outputJson(data, meta)
 	} else if (mode === 'ink') {
-		outputInk(React.createElement(SuccessMessage, { message: `Moved item "${data.title}" to column ${options.to}` }))
+		outputInk(React.createElement(SuccessMessage, { message: `Moved item "${data.title}" to column ${columnLabel}` }))
 	} else {
-		outputPlain(`Moved item "${data.title}" to column ${options.to}`)
+		outputPlain(`Moved item "${data.title}" to column ${columnLabel}`)
 	}
 }
