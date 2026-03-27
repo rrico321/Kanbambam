@@ -105,9 +105,9 @@ Plans:
 **UI hint**: yes
 
 Plans:
-- [ ] 05-01-PLAN.md — Infrastructure: dependencies, CORS fix, API client, providers, dark mode, test setup
+- [x] 05-01-PLAN.md — Infrastructure: dependencies, CORS fix, API client, providers, dark mode, test setup
 - [x] 05-02-PLAN.md — Sidebar navigation, workspace/board routes, TanStack Query hooks, workspace list page
-- [ ] 05-03-PLAN.md — Board view with columns, cards, add-item form, and board data hook
+- [x] 05-03-PLAN.md — Board view with columns, cards, add-item form, and board data hook
 - [ ] 05-04-PLAN.md — Drag-and-drop with @dnd-kit, optimistic moves, and fractional-index positions
 - [ ] 05-05-PLAN.md — Item detail modal with inline editing, label/date pickers, delete, and sidebar CRUD
 
@@ -122,4 +122,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 2. Authentication Flows | 4/4 | Complete   | 2026-03-26 |
 | 3. Core Kanban CLI | 4/4 | In Progress|  |
 | 4. Item Management | 0/3 | Not started | - |
-| 5. Web App | 1/5 | In Progress|  |
+| 5. Web App | 3/5 | In Progress|  |
