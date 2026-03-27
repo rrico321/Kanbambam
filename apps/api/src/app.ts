@@ -12,7 +12,10 @@ import { itemsApp } from './routes/items/items.handlers'
 const app = new OpenAPIHono()
 
 // Global middleware
-app.use('*', cors())
+app.use('*', cors({
+	origin: [process.env.WEB_URL || 'http://localhost:3001'],
+	credentials: true,
+}))
 app.use('*', requestId())
 app.onError(errorHandler)
 
