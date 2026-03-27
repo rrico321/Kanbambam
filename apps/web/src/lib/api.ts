@@ -1,3 +1,14 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
+
+function resolveUrl(path: string): string {
+	// Server-side: need full URL (relative paths don't work in Node.js fetch)
+	if (typeof window === 'undefined') {
+		return `${API_URL}${path}`
+	}
+	// Client-side: use relative path (goes through Next.js rewrites)
+	return path
+}
+
 type ApiError = { code: string; message: string }
 type ApiResult<T> = { data?: T; error?: ApiError }
 
@@ -20,7 +31,7 @@ async function apiFetch<T>(
 	options: RequestInit = {},
 	_isRetry = false,
 ): Promise<ApiResult<T>> {
-	const res = await fetch(path, {
+	const res = await fetch(resolveUrl(path), {
 		...options,
 		headers: {
 			'Content-Type': 'application/json',
