@@ -1,10 +1,12 @@
 {
 	"name": "kanbambam",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "CLI-first Kanban board management — create and manage boards, columns, and items from your terminal",
 	"type": "module",
 	"license": "MIT",
-	"bin": "./dist/index.js",
+	"bin": {
+		"kanbambam": "./dist/index.js"
+	},
 	"files": [
 		"dist"
 	],
