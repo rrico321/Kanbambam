@@ -3,5 +3,9 @@ dist/
 .env
 .turbo/
 *.tsbuildinfo
-.claude/worktrees/
 apps/api/api/.build/
+
+# Claude Code
+.claude/
+CLAUDE.md
+.planning/
