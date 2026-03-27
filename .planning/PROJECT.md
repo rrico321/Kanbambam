@@ -17,10 +17,10 @@ Kanban board management from the command line that stays perfectly in sync with 
 - [x] Browser-based login flow for CLI authentication (like `gh auth login`) — Validated in Phase 2: Authentication Flows
 - [x] User signup and account management — Validated in Phase 2: Authentication Flows
 
-### Active
+### Validated in Phase 5: Web App
 
-- [ ] Trello-style drag-and-drop web app
-- [ ] Real-time sync between CLI and web app (same API, same data)
+- [x] Trello-style drag-and-drop web app
+- [x] Real-time sync between CLI and web app (same API, same data)
 
 ### Validated in Phase 4: Item Management
 
@@ -55,11 +55,12 @@ Kanban board management from the command line that stays perfectly in sync with 
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| CLI-first, GUI second | Target AI-assisted workflows and developer audience | — Pending |
-| TypeScript full stack | One language for CLI, API, and web — shared types and contracts | — Pending |
-| Cloud API as single source of truth | Both CLI and web are equal API clients, no sync conflicts | — Pending |
-| Browser login flow for CLI auth | Familiar UX (like GitHub CLI), avoids plaintext credentials | — Pending |
-| Single-user for v1 | Reduce complexity, add team collaboration in v2 | — Pending |
+| CLI-first, GUI second | Target AI-assisted workflows and developer audience | Validated — both CLI and web fully functional |
+| TypeScript full stack | One language for CLI, API, and web — shared types and contracts | Validated — Zod schemas shared across all packages |
+| Cloud API as single source of truth | Both CLI and web are equal API clients, no sync conflicts | Validated — both clients use same REST API |
+| Browser login flow for CLI auth | Familiar UX (like GitHub CLI), avoids plaintext credentials | Validated — browser callback flow works |
+| Dual auth: Bearer + cookies | CLI uses Authorization header, web uses httpOnly cookies | Validated — API accepts both via hono/jwt |
+| Single-user for v1 | Reduce complexity, add team collaboration in v2 | Active |
 
 ## Evolution
 
@@ -79,4 +80,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-26 after Phase 2 completion*
+*Last updated: 2026-03-27 after Phase 5 completion — all v1 requirements complete*

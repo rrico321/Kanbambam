@@ -7,55 +7,55 @@
 
 ### Workspaces
 
-- [ ] **WKSP-01**: User can create a workspace with a name
-- [ ] **WKSP-02**: User can list all their workspaces
-- [ ] **WKSP-03**: User can rename a workspace
-- [ ] **WKSP-04**: User can delete a workspace (and all its boards)
+- [x] **WKSP-01**: User can create a workspace with a name
+- [x] **WKSP-02**: User can list all their workspaces
+- [x] **WKSP-03**: User can rename a workspace
+- [x] **WKSP-04**: User can delete a workspace (and all its boards)
 
 ### Boards
 
-- [ ] **BORD-01**: User can create a board within a workspace
-- [ ] **BORD-02**: User can list all boards in a workspace
-- [ ] **BORD-03**: User can rename a board
-- [ ] **BORD-04**: User can delete a board (and all its columns/items)
-- [ ] **BORD-05**: New boards are created with default columns (To Do, In Progress, Done)
+- [x] **BORD-01**: User can create a board within a workspace
+- [x] **BORD-02**: User can list all boards in a workspace
+- [x] **BORD-03**: User can rename a board
+- [x] **BORD-04**: User can delete a board (and all its columns/items)
+- [x] **BORD-05**: New boards are created with default columns (To Do, In Progress, Done)
 
 ### Columns
 
-- [ ] **COLM-01**: User can add a column to a board
-- [ ] **COLM-02**: User can rename a column
-- [ ] **COLM-03**: User can reorder columns within a board
-- [ ] **COLM-04**: User can delete a column (moves items to a target column or deletes them)
+- [x] **COLM-01**: User can add a column to a board
+- [x] **COLM-02**: User can rename a column
+- [x] **COLM-03**: User can reorder columns within a board
+- [x] **COLM-04**: User can delete a column (moves items to a target column or deletes them)
 
 ### Items
 
-- [ ] **ITEM-01**: User can create an item in a column with a title
-- [ ] **ITEM-02**: User can add/edit a description on an item
-- [ ] **ITEM-03**: User can move an item to a different column
-- [ ] **ITEM-04**: User can reorder items within a column
-- [ ] **ITEM-05**: User can delete an item
-- [ ] **ITEM-06**: User can add labels/tags to an item (with color)
-- [ ] **ITEM-07**: User can set a due date on an item
-- [ ] **ITEM-08**: User can remove labels and due dates from an item
+- [x] **ITEM-01**: User can create an item in a column with a title
+- [x] **ITEM-02**: User can add/edit a description on an item
+- [x] **ITEM-03**: User can move an item to a different column
+- [x] **ITEM-04**: User can reorder items within a column
+- [x] **ITEM-05**: User can delete an item
+- [x] **ITEM-06**: User can add labels/tags to an item (with color)
+- [x] **ITEM-07**: User can set a due date on an item
+- [x] **ITEM-08**: User can remove labels and due dates from an item
 
 ### CLI
 
-- [ ] **CLI-01**: All entity operations available as CLI commands (workspace, board, column, item CRUD)
-- [ ] **CLI-02**: Every command supports `--json` flag for structured JSON output (AI-friendly)
-- [ ] **CLI-03**: Human-readable formatted output by default
-- [ ] **CLI-04**: Browser-based login flow (`kanbambam auth login` opens browser, receives token)
-- [ ] **CLI-05**: User can set active workspace/board context to avoid repeating IDs
-- [ ] **CLI-06**: User can view current context (`kanbambam context`)
-- [ ] **CLI-07**: User can clear context (`kanbambam context clear`)
+- [x] **CLI-01**: All entity operations available as CLI commands (workspace, board, column, item CRUD)
+- [x] **CLI-02**: Every command supports `--json` flag for structured JSON output (AI-friendly)
+- [x] **CLI-03**: Human-readable formatted output by default
+- [x] **CLI-04**: Browser-based login flow (`kanbambam auth login` opens browser, receives token)
+- [x] **CLI-05**: User can set active workspace/board context to avoid repeating IDs
+- [x] **CLI-06**: User can view current context (`kanbambam context`)
+- [x] **CLI-07**: User can clear context (`kanbambam context clear`)
 
 ### Authentication
 
-- [ ] **AUTH-01**: User can sign up with email and password via web app
-- [ ] **AUTH-02**: User can log in via web app
-- [ ] **AUTH-03**: User can log out from web app
-- [ ] **AUTH-04**: User can authenticate CLI via browser login flow
-- [ ] **AUTH-05**: CLI auth token persists across sessions
-- [ ] **AUTH-06**: User session stays active across browser refresh (JWT)
+- [x] **AUTH-01**: User can sign up with email and password via web app
+- [x] **AUTH-02**: User can log in via web app
+- [x] **AUTH-03**: User can log out from web app
+- [x] **AUTH-04**: User can authenticate CLI via browser login flow
+- [x] **AUTH-05**: CLI auth token persists across sessions
+- [x] **AUTH-06**: User session stays active across browser refresh (JWT)
 
 ### Web App
 
@@ -68,10 +68,10 @@
 
 ### API
 
-- [ ] **API-01**: REST API serving all CRUD operations for workspaces, boards, columns, and items
-- [ ] **API-02**: JWT-based authentication for both CLI and web clients
-- [ ] **API-03**: Fractional indexing for item and column ordering (no reindex on every move)
-- [ ] **API-04**: Pagination on list endpoints
+- [x] **API-01**: REST API serving all CRUD operations for workspaces, boards, columns, and items
+- [x] **API-02**: JWT-based authentication for both CLI and web clients
+- [x] **API-03**: Fractional indexing for item and column ordering (no reindex on every move)
+- [x] **API-04**: Pagination on list endpoints
 
 ## v2 Requirements
 
@@ -121,44 +121,44 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| API-01 | Phase 1 | Pending |
-| API-02 | Phase 1 | Pending |
-| API-03 | Phase 1 | Pending |
-| API-04 | Phase 1 | Pending |
-| AUTH-06 | Phase 1 | Pending |
-| AUTH-01 | Phase 2 | Pending |
-| AUTH-02 | Phase 2 | Pending |
-| AUTH-03 | Phase 2 | Pending |
-| AUTH-04 | Phase 2 | Pending |
-| AUTH-05 | Phase 2 | Pending |
-| CLI-02 | Phase 2 | Pending |
-| CLI-03 | Phase 2 | Pending |
-| CLI-04 | Phase 2 | Pending |
-| WKSP-01 | Phase 3 | Pending |
-| WKSP-02 | Phase 3 | Pending |
-| WKSP-03 | Phase 3 | Pending |
-| WKSP-04 | Phase 3 | Pending |
-| BORD-01 | Phase 3 | Pending |
-| BORD-02 | Phase 3 | Pending |
-| BORD-03 | Phase 3 | Pending |
-| BORD-04 | Phase 3 | Pending |
-| BORD-05 | Phase 3 | Pending |
-| COLM-01 | Phase 3 | Pending |
-| COLM-02 | Phase 3 | Pending |
-| COLM-03 | Phase 3 | Pending |
-| COLM-04 | Phase 3 | Pending |
-| CLI-01 | Phase 3 | Pending |
-| CLI-05 | Phase 3 | Pending |
-| CLI-06 | Phase 3 | Pending |
-| CLI-07 | Phase 3 | Pending |
-| ITEM-01 | Phase 4 | Pending |
-| ITEM-02 | Phase 4 | Pending |
-| ITEM-03 | Phase 4 | Pending |
-| ITEM-04 | Phase 4 | Pending |
-| ITEM-05 | Phase 4 | Pending |
-| ITEM-06 | Phase 4 | Pending |
-| ITEM-07 | Phase 4 | Pending |
-| ITEM-08 | Phase 4 | Pending |
+| API-01 | Phase 1 | Complete |
+| API-02 | Phase 1 | Complete |
+| API-03 | Phase 1 | Complete |
+| API-04 | Phase 1 | Complete |
+| AUTH-06 | Phase 1 | Complete |
+| AUTH-01 | Phase 2 | Complete |
+| AUTH-02 | Phase 2 | Complete |
+| AUTH-03 | Phase 2 | Complete |
+| AUTH-04 | Phase 2 | Complete |
+| AUTH-05 | Phase 2 | Complete |
+| CLI-02 | Phase 2 | Complete |
+| CLI-03 | Phase 2 | Complete |
+| CLI-04 | Phase 2 | Complete |
+| WKSP-01 | Phase 3 | Complete |
+| WKSP-02 | Phase 3 | Complete |
+| WKSP-03 | Phase 3 | Complete |
+| WKSP-04 | Phase 3 | Complete |
+| BORD-01 | Phase 3 | Complete |
+| BORD-02 | Phase 3 | Complete |
+| BORD-03 | Phase 3 | Complete |
+| BORD-04 | Phase 3 | Complete |
+| BORD-05 | Phase 3 | Complete |
+| COLM-01 | Phase 3 | Complete |
+| COLM-02 | Phase 3 | Complete |
+| COLM-03 | Phase 3 | Complete |
+| COLM-04 | Phase 3 | Complete |
+| CLI-01 | Phase 3 | Complete |
+| CLI-05 | Phase 3 | Complete |
+| CLI-06 | Phase 3 | Complete |
+| CLI-07 | Phase 3 | Complete |
+| ITEM-01 | Phase 4 | Complete |
+| ITEM-02 | Phase 4 | Complete |
+| ITEM-03 | Phase 4 | Complete |
+| ITEM-04 | Phase 4 | Complete |
+| ITEM-05 | Phase 4 | Complete |
+| ITEM-06 | Phase 4 | Complete |
+| ITEM-07 | Phase 4 | Complete |
+| ITEM-08 | Phase 4 | Complete |
 | WEB-01 | Phase 5 | Complete |
 | WEB-02 | Phase 5 | Complete |
 | WEB-03 | Phase 5 | Complete |
@@ -170,7 +170,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 - v1 requirements: 44 total
 - Mapped to phases: 44
 - Unmapped: 0
+- **Complete: 44/44 (100%)**
 
 ---
 *Requirements defined: 2026-03-25*
-*Last updated: 2026-03-25 after roadmap creation*
+*Last updated: 2026-03-27 — all v1 requirements complete*

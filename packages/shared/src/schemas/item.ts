@@ -20,7 +20,7 @@ export const CreateItemSchema = z.object({
 export const UpdateItemSchema = z.object({
 	title: z.string().min(1).max(500).optional(),
 	description: z.string().nullable().optional(),
-	dueDate: z.string().datetime().nullable().optional(),
+	dueDate: z.union([z.string().datetime(), z.string().date()]).nullable().optional(),
 	labels: z.array(z.string()).nullable().optional(),
 })
 
