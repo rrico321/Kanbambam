@@ -104,11 +104,12 @@ export function BoardView({ boardId }: BoardViewProps) {
 
 	if (columns.length === 0) {
 		return (
-			<div className="flex items-center justify-center h-full">
+			<div className="flex flex-col items-center justify-center h-full gap-6">
 				<EmptyState
 					heading="This board has no columns"
 					body="Add a column to start organizing items."
 				/>
+				<AddColumnButton boardId={boardId} />
 			</div>
 		)
 	}
