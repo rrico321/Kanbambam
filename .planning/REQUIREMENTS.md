@@ -64,7 +64,7 @@
 - [ ] **WEB-03**: Drag-and-drop to reorder items within a column
 - [ ] **WEB-04**: Inline editing of item title, description, labels, and due date
 - [ ] **WEB-05**: Navigate between workspaces and boards
-- [ ] **WEB-06**: Board view reflects all changes made via CLI (same API, same data)
+- [x] **WEB-06**: Board view reflects all changes made via CLI (same API, same data)
 
 ### API
 
@@ -164,7 +164,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | WEB-03 | Phase 5 | Pending |
 | WEB-04 | Phase 5 | Pending |
 | WEB-05 | Phase 5 | Pending |
-| WEB-06 | Phase 5 | Pending |
+| WEB-06 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 44 total
