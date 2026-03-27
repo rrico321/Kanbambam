@@ -1,9 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { DragDropProvider } from '@dnd-kit/react'
 import { Plus } from 'lucide-react'
-import type { Item } from '@kanbambam/shared'
 import { useBoardData } from '@/hooks/use-board-data'
 import { useOptimisticMove } from '@/hooks/use-optimistic-move'
 import { useCreateColumn } from '@/hooks/use-api'
@@ -88,7 +87,17 @@ export function BoardView({ boardId }: BoardViewProps) {
 		handleDragOver,
 		handleDragEnd,
 	} = useOptimisticMove(columns, itemsByColumn)
-	const [selectedItem, setSelectedItem] = useState<Item | null>(null)
+	const [selectedItemId, setSelectedItemId] = useState<string | null>(null)
+
+	// Look up the live item from query data so modal always shows fresh data
+	const selectedItem = useMemo(() => {
+		if (!selectedItemId) return null
+		for (const items of Object.values(optimisticItems)) {
+			const found = items.find((it) => it.id === selectedItemId)
+			if (found) return found
+		}
+		return null
+	}, [selectedItemId, optimisticItems])
 
 	if (isLoading) return <BoardSkeleton />
 
@@ -127,7 +136,7 @@ export function BoardView({ boardId }: BoardViewProps) {
 							key={col.id}
 							column={col}
 							items={optimisticItems[col.id] ?? []}
-							onCardClick={(item) => setSelectedItem(item)}
+							onCardClick={(item) => setSelectedItemId(item.id)}
 						/>
 					))}
 					{/* Add column button per D-17 */}
@@ -135,7 +144,7 @@ export function BoardView({ boardId }: BoardViewProps) {
 				</div>
 			</DragDropProvider>
 
-			<ItemModal item={selectedItem} onClose={() => setSelectedItem(null)} />
+			<ItemModal item={selectedItem} onClose={() => setSelectedItemId(null)} />
 		</>
 	)
 }
