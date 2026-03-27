@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation'
 import { AppShell } from '@/components/layout/AppShell'
+import { BoardView } from '@/components/board/BoardView'
 
 export default function BoardPage() {
 	const params = useParams()
@@ -9,9 +10,7 @@ export default function BoardPage() {
 
 	return (
 		<AppShell>
-			<div className="flex items-center justify-center h-full text-gray-400 dark:text-gray-500">
-				Board view for {boardId} (coming in Plan 03)
-			</div>
+			<BoardView boardId={boardId} />
 		</AppShell>
 	)
 }
