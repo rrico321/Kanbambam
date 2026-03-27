@@ -24,9 +24,9 @@ export function Sidebar() {
 			{!collapsed && (
 				<>
 					<div className="px-4 py-4 border-b border-gray-200 dark:border-gray-700">
-						<h1 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+						<a href="/workspaces" className="text-lg font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
 							Kanbambam
-						</h1>
+						</a>
 					</div>
 
 					<div className="px-4 py-2 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
