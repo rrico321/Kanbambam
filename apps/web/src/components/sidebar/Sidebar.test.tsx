@@ -33,6 +33,12 @@ vi.mock('@/hooks/use-api', () => ({
 		],
 		isLoading: false,
 	}),
+	useCreateWorkspace: () => ({ mutateAsync: vi.fn(), isPending: false }),
+	useRenameWorkspace: () => ({ mutate: vi.fn(), isPending: false }),
+	useDeleteWorkspace: () => ({ mutate: vi.fn(), isPending: false }),
+	useCreateBoard: () => ({ mutateAsync: vi.fn(), isPending: false }),
+	useRenameBoard: () => ({ mutate: vi.fn(), isPending: false }),
+	useDeleteBoard: () => ({ mutate: vi.fn(), isPending: false }),
 }))
 
 // Import after mocks
