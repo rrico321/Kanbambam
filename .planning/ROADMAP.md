@@ -101,7 +101,7 @@ Plans:
   3. User can click on a card to view and inline-edit its title, description, labels, and due date
   4. User can navigate between workspaces and boards
   5. Changes made via CLI are immediately visible in the web app on refresh (same API, same data)
-**Plans**: 5 plans
+**Plans**: 6 plans
 **UI hint**: yes
 
 Plans:
@@ -110,6 +110,7 @@ Plans:
 - [x] 05-03-PLAN.md — Board view with columns, cards, add-item form, and board data hook
 - [x] 05-04-PLAN.md — Drag-and-drop with @dnd-kit, optimistic moves, and fractional-index positions
 - [ ] 05-05-PLAN.md — Item detail modal with inline editing, label/date pickers, delete, and sidebar CRUD
+- [ ] 05-06-PLAN.md — Gap closure: fix test mock regressions and orphaned requirement reference
 
 ## Progress
 
@@ -122,4 +123,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 2. Authentication Flows | 4/4 | Complete   | 2026-03-26 |
 | 3. Core Kanban CLI | 4/4 | In Progress|  |
 | 4. Item Management | 0/3 | Not started | - |
-| 5. Web App | 3/5 | In Progress|  |
+| 5. Web App | 3/6 | In Progress|  |
