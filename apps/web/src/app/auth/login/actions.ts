@@ -1,7 +1,7 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { LoginSchema } from '@kanbambam/shared'
-import { apiPost } from '@/lib/api'
+import { serverPost } from '@/lib/api-server'
 import { setAuthCookies } from '@/lib/auth'
 
 export interface LoginState {
@@ -24,7 +24,7 @@ export async function loginAction(prevState: LoginState, formData: FormData): Pr
 		return { fieldErrors }
 	}
 
-	const result = await apiPost<{ accessToken: string; refreshToken: string }>(
+	const result = await serverPost<{ accessToken: string; refreshToken: string }>(
 		'/api/v1/auth/login',
 		{ email, password },
 	)
