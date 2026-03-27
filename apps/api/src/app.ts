@@ -13,7 +13,13 @@ const app = new OpenAPIHono()
 
 // Global middleware
 app.use('*', cors({
-	origin: [process.env.WEB_URL || 'http://localhost:3001'],
+	origin: (origin) => {
+		const allowed = [
+			process.env.WEB_URL || 'http://localhost:3001',
+			'http://localhost:3001',
+		]
+		return allowed.includes(origin) ? origin : null
+	},
 	credentials: true,
 }))
 app.use('*', requestId())
