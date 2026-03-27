@@ -5,7 +5,8 @@
 	"scripts": {
 		"dev": "next dev --port 3001",
 		"build": "next build",
-		"start": "next start"
+		"start": "next start",
+		"test": "vitest run"
 	},
 	"dependencies": {
 		"@dnd-kit/helpers": "0.3.2",
@@ -28,7 +29,7 @@
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
-		"@vitejs/plugin-react": "^6.0.1",
+		"@vitejs/plugin-react": "^4.7.0",
 		"jsdom": "^29.0.1",
 		"tailwindcss": "^4",
 		"typescript": "^5",
