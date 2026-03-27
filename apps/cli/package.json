@@ -1,12 +1,10 @@
 {
 	"name": "kanbambam",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "CLI-first Kanban board management — create and manage boards, columns, and items from your terminal",
 	"type": "module",
 	"license": "MIT",
-	"bin": {
-		"kanbambam": "./dist/index.js"
-	},
+	"bin": "./dist/index.js",
 	"files": [
 		"dist"
 	],
@@ -32,7 +30,6 @@
 		"prepublishOnly": "tsup"
 	},
 	"dependencies": {
-		"@kanbambam/shared": "workspace:*",
 		"chalk": "^5",
 		"commander": "^14",
 		"conf": "^15",
@@ -43,6 +40,7 @@
 		"react": "^19"
 	},
 	"devDependencies": {
+		"@kanbambam/shared": "workspace:*",
 		"@types/react": "^19",
 		"tsup": "^8",
 		"tsx": "^4",
