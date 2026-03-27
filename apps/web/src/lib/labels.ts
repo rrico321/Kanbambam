@@ -11,6 +11,15 @@ export const LABEL_COLORS = [
 
 export type LabelColor = (typeof LABEL_COLORS)[number]['name']
 
-export function getLabelStyle(colorName: string) {
-	return LABEL_COLORS.find((c) => c.name === colorName) ?? LABEL_COLORS[7]
+export function getLabelStyle(label: string) {
+	// If the label matches a color name exactly, use that color
+	const exact = LABEL_COLORS.find((c) => c.name === label)
+	if (exact) return exact
+
+	// Otherwise, assign a color based on a simple hash of the label text
+	let hash = 0
+	for (let i = 0; i < label.length; i++) {
+		hash = ((hash << 5) - hash + label.charCodeAt(i)) | 0
+	}
+	return LABEL_COLORS[Math.abs(hash) % LABEL_COLORS.length]
 }
