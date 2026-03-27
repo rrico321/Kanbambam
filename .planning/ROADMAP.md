@@ -109,8 +109,8 @@ Plans:
 - [x] 05-02-PLAN.md — Sidebar navigation, workspace/board routes, TanStack Query hooks, workspace list page
 - [x] 05-03-PLAN.md — Board view with columns, cards, add-item form, and board data hook
 - [x] 05-04-PLAN.md — Drag-and-drop with @dnd-kit, optimistic moves, and fractional-index positions
-- [ ] 05-05-PLAN.md — Item detail modal with inline editing, label/date pickers, delete, and sidebar CRUD
-- [ ] 05-06-PLAN.md — Gap closure: fix test mock regressions and orphaned requirement reference
+- [x] 05-05-PLAN.md — Item detail modal with inline editing, label/date pickers, delete, and sidebar CRUD
+- [x] 05-06-PLAN.md — Gap closure: fix test mock regressions and orphaned requirement reference
 
 ## Progress
 
