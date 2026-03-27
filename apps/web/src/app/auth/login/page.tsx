@@ -1,5 +1,6 @@
 'use client'
-import { use, useActionState } from 'react'
+import { useActionState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { AuthCard } from '@/components/AuthCard'
 import { ErrorAlert } from '@/components/ErrorAlert'
 import { FormField } from '@/components/FormField'
@@ -7,16 +8,18 @@ import { SubmitButton } from '@/components/SubmitButton'
 import { AuthLink } from '@/components/AuthLink'
 import { type LoginState, loginAction } from './actions'
 
-export default function LoginPage({
-	searchParams,
-}: { searchParams: Promise<{ cli_callback?: string; state?: string }> }) {
+export default function LoginPage() {
 	const [state, formAction] = useActionState<LoginState, FormData>(loginAction, {})
+	const searchParams = useSearchParams()
+	const cliCallback = searchParams.get('cli_callback')
+	const cliState = searchParams.get('state')
 
 	return (
 		<AuthCard title="Log in to Kanbambam">
 			{state.error && <ErrorAlert message={state.error} />}
 			<form action={formAction}>
-				<HiddenCliFields searchParams={searchParams} />
+				{cliCallback && <input type="hidden" name="cli_callback" value={cliCallback} />}
+				{cliState && <input type="hidden" name="state" value={cliState} />}
 				<FormField
 					label="Email"
 					name="email"
@@ -34,19 +37,5 @@ export default function LoginPage({
 			</form>
 			<AuthLink text="Don't have an account?" linkText="Sign up" href="/auth/signup" />
 		</AuthCard>
-	)
-}
-
-function HiddenCliFields({
-	searchParams,
-}: { searchParams: Promise<{ cli_callback?: string; state?: string }> }) {
-	const params = use(searchParams)
-	return (
-		<>
-			{params.cli_callback && (
-				<input type="hidden" name="cli_callback" value={params.cli_callback} />
-			)}
-			{params.state && <input type="hidden" name="state" value={params.state} />}
-		</>
 	)
 }
