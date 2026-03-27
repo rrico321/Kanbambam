@@ -62,7 +62,7 @@
 - [ ] **WEB-01**: Trello-style board view with columns displayed side by side
 - [ ] **WEB-02**: Drag-and-drop items between columns
 - [ ] **WEB-03**: Drag-and-drop to reorder items within a column
-- [ ] **WEB-04**: Inline editing of item title, description, labels, and due date
+- [x] **WEB-04**: Inline editing of item title, description, labels, and due date
 - [ ] **WEB-05**: Navigate between workspaces and boards
 - [ ] **WEB-06**: Board view reflects all changes made via CLI (same API, same data)
 
@@ -162,7 +162,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | WEB-01 | Phase 5 | Pending |
 | WEB-02 | Phase 5 | Pending |
 | WEB-03 | Phase 5 | Pending |
-| WEB-04 | Phase 5 | Pending |
+| WEB-04 | Phase 5 | Complete |
 | WEB-05 | Phase 5 | Pending |
 | WEB-06 | Phase 5 | Pending |
 
