@@ -54,25 +54,7 @@ async function apiFetch<T>(
 	if (res.status === 204) return { data: undefined as T }
 
 	const json = await res.json()
-	if (!res.ok) return { error: json.error }
-	return { data: json.data }
-}
-
-// Server-side POST helper for server actions (uses API_URL without NEXT_PUBLIC_ prefix)
-const SERVER_API_URL = process.env.API_URL || API_URL
-
-export async function apiPost<T>(
-	path: string,
-	body: unknown,
-): Promise<ApiResult<T>> {
-	const res = await fetch(`${SERVER_API_URL}${path}`, {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(body),
-	})
-
-	const json = await res.json()
-	if (!res.ok) return { error: json.error }
+	if (!res.ok) return { error: json.error || { code: 'UNKNOWN', message: 'Request failed' } }
 	return { data: json.data }
 }
 
@@ -86,4 +68,12 @@ export const api = {
 	patch: <T>(path: string, body: unknown) =>
 		apiFetch<T>(path, { method: 'PATCH', body: JSON.stringify(body) }),
 	delete: <T>(path: string) => apiFetch<T>(path, { method: 'DELETE' }),
+}
+
+// Legacy export for existing code
+export async function apiPost<T>(
+	path: string,
+	body: unknown,
+): Promise<ApiResult<T>> {
+	return api.post<T>(path, body)
 }
