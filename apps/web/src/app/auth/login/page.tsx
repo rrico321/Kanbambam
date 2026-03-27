@@ -1,5 +1,5 @@
 'use client'
-import { Suspense, useActionState } from 'react'
+import { Suspense, useActionState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { AuthCard } from '@/components/AuthCard'
 import { ErrorAlert } from '@/components/ErrorAlert'
@@ -10,6 +10,12 @@ import { type LoginState, loginAction } from './actions'
 
 function LoginForm() {
 	const [state, formAction] = useActionState<LoginState, FormData>(loginAction, {})
+
+	useEffect(() => {
+		if (state.cliRedirect) {
+			window.location.href = state.cliRedirect
+		}
+	}, [state.cliRedirect])
 	const searchParams = useSearchParams()
 	const cliCallback = searchParams.get('cli_callback')
 	const cliState = searchParams.get('state')

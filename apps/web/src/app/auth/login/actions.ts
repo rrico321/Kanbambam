@@ -7,6 +7,7 @@ import { setAuthCookies } from '@/lib/auth'
 export interface LoginState {
 	error?: string
 	fieldErrors?: Record<string, string>
+	cliRedirect?: string
 }
 
 export async function loginAction(prevState: LoginState, formData: FormData): Promise<LoginState> {
@@ -43,7 +44,7 @@ export async function loginAction(prevState: LoginState, formData: FormData): Pr
 		callbackUrl.searchParams.set('access_token', accessToken)
 		callbackUrl.searchParams.set('refresh_token', refreshToken)
 		callbackUrl.searchParams.set('state', state)
-		redirect(callbackUrl.toString())
+		return { cliRedirect: callbackUrl.toString() }
 	}
 
 	await setAuthCookies(accessToken, refreshToken)
