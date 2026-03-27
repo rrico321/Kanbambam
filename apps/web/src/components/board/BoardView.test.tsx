@@ -11,6 +11,11 @@ vi.mock('@/hooks/use-board-data', () => ({
 vi.mock('@/hooks/use-api', () => ({
 	useCreateItem: () => ({ mutateAsync: vi.fn(), isPending: false }),
 	useMoveItem: () => ({ mutate: vi.fn(), isPending: false }),
+	useCreateColumn: () => ({ mutateAsync: vi.fn(), isPending: false }),
+	useRenameColumn: () => ({ mutateAsync: vi.fn(), isPending: false }),
+	useDeleteColumn: () => ({ mutateAsync: vi.fn(), isPending: false }),
+	useUpdateItem: () => ({ mutateAsync: vi.fn(), isPending: false }),
+	useDeleteItem: () => ({ mutateAsync: vi.fn(), isPending: false }),
 }))
 
 import { BoardView } from './BoardView'
