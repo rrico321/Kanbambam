@@ -3,6 +3,7 @@
 import { useWorkspaces, useCreateWorkspace } from '@/hooks/use-api'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { SidebarSkeleton } from '@/components/ui/LoadingSkeleton'
+import { AppShell } from '@/components/layout/AppShell'
 import { Plus } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -13,9 +14,15 @@ export default function WorkspacesPage() {
 	const [name, setName] = useState('')
 	const router = useRouter()
 
-	if (isLoading) return <SidebarSkeleton />
+	if (isLoading)
+		return (
+			<AppShell>
+				<SidebarSkeleton />
+			</AppShell>
+		)
 
 	return (
+		<AppShell>
 		<div className="max-w-2xl mx-auto py-12 px-6">
 			<div className="flex items-center justify-between mb-8">
 				<h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
@@ -68,5 +75,6 @@ export default function WorkspacesPage() {
 				</div>
 			)}
 		</div>
+		</AppShell>
 	)
 }
