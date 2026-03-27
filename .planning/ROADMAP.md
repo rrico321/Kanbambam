@@ -108,7 +108,7 @@ Plans:
 - [x] 05-01-PLAN.md — Infrastructure: dependencies, CORS fix, API client, providers, dark mode, test setup
 - [x] 05-02-PLAN.md — Sidebar navigation, workspace/board routes, TanStack Query hooks, workspace list page
 - [x] 05-03-PLAN.md — Board view with columns, cards, add-item form, and board data hook
-- [ ] 05-04-PLAN.md — Drag-and-drop with @dnd-kit, optimistic moves, and fractional-index positions
+- [x] 05-04-PLAN.md — Drag-and-drop with @dnd-kit, optimistic moves, and fractional-index positions
 - [ ] 05-05-PLAN.md — Item detail modal with inline editing, label/date pickers, delete, and sidebar CRUD
 
 ## Progress
