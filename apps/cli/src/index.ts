@@ -1,7 +1,7 @@
 import { Command } from 'commander'
 import { printBanner } from './lib/banner.js'
 
-const VERSION = '1.0.3'
+const VERSION = '1.0.4'
 
 const program = new Command()
 
