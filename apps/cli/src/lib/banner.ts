@@ -17,15 +17,20 @@ const COLORS = [
 	'#164e63', // cyan-900
 ]
 
-export function printBanner(version?: string): void {
+export function printBanner(version?: string, returnString?: boolean): string {
 	const lines = BANNER.split('\n').filter((l) => l.length > 0)
-	for (let i = 0; i < lines.length; i++) {
+	const coloredLines = lines.map((line, i) => {
 		const color = COLORS[i % COLORS.length]
-		console.log(chalk.hex(color)(lines[i]))
-	}
+		return chalk.hex(color)(line)
+	})
 	const tagline = version
 		? `  ${chalk.dim(`v${version}`)}  ${chalk.white('CLI-first Kanban board management')}`
 		: `  ${chalk.white('CLI-first Kanban board management')}`
-	console.log(tagline)
+	coloredLines.push(tagline)
+
+	const output = coloredLines.join('\n')
+	if (returnString) return output
+	console.log(output)
 	console.log()
+	return output
 }

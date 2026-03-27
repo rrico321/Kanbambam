@@ -1,7 +1,7 @@
 import { Command } from 'commander'
 import { printBanner } from './lib/banner.js'
 
-const VERSION = '1.0.4'
+const VERSION = '1.0.5'
 
 const program = new Command()
 
@@ -11,15 +11,21 @@ if (process.argv.includes('-V') || process.argv.includes('--version')) {
 	process.exit(0)
 }
 
+// Show banner on bare command, help, and -h
+const userArgs = process.argv.slice(2).filter((a) => !a.startsWith('-'))
+const isTopLevelHelp = userArgs.length === 0 || userArgs[0] === 'help'
+
 program
 	.name('kanbambam')
 	.description('CLI-first Kanban board management')
-	.action(() => {
-		// Bare "kanbambam" with no command
-		if (!program.opts().json) {
-			printBanner(VERSION)
-		}
-		program.outputHelp()
+	.version(VERSION, '-V, --version', 'output the version number')
+	.configureHelp({
+		formatHelp(cmd, helper) {
+			const banner = isTopLevelHelp && !process.argv.includes('--json')
+				? printBanner(VERSION, true) + '\n'
+				: ''
+			return banner + Command.prototype.createHelp().formatHelp(cmd, helper)
+		},
 	})
 
 program.option('--json', 'Output raw JSON (matches API envelope format)')
