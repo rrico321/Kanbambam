@@ -10,6 +10,7 @@ vi.mock('@/hooks/use-board-data', () => ({
 // Mock use-api to prevent real API calls
 vi.mock('@/hooks/use-api', () => ({
 	useCreateItem: () => ({ mutateAsync: vi.fn(), isPending: false }),
+	useMoveItem: () => ({ mutate: vi.fn(), isPending: false }),
 }))
 
 import { BoardView } from './BoardView'
