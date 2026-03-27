@@ -1,11 +1,14 @@
 'use client'
 
 import { FileText, Calendar } from 'lucide-react'
+import { useSortable } from '@dnd-kit/react/sortable'
 import { getLabelStyle } from '@/lib/labels'
 import type { Item } from '@kanbambam/shared'
 
 interface CardProps {
 	item: Item
+	index: number
+	column: string
 	onClick: () => void
 }
 
@@ -17,15 +20,29 @@ function getDueDateColor(dueDate: string): string {
 	return 'text-gray-500 dark:text-gray-400' // future
 }
 
-export function Card({ item, onClick }: CardProps) {
+export function Card({ item, index, column, onClick }: CardProps) {
+	const { ref, isDragging } = useSortable({
+		id: item.id,
+		index,
+		type: 'item',
+		accept: ['item'],
+		group: column,
+	})
+
 	return (
-		<button
-			onClick={onClick}
+		<div
+			ref={ref}
+			onClick={!isDragging ? onClick : undefined}
+			style={{ opacity: isDragging ? 0.5 : 1 }}
 			className="w-full text-left bg-white dark:bg-gray-800 shadow-sm rounded-lg border border-gray-200 dark:border-gray-700 p-3 hover:shadow-md transition-shadow cursor-pointer"
 		>
-			<p className="text-sm font-semibold text-gray-900 dark:text-gray-100">{item.title}</p>
+			<p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+				{item.title}
+			</p>
 
-			{((item.labels && item.labels.length > 0) || item.dueDate || item.description) && (
+			{((item.labels && item.labels.length > 0) ||
+				item.dueDate ||
+				item.description) && (
 				<div className="flex flex-wrap items-center gap-1 mt-2">
 					{item.labels?.map((label) => {
 						const style = getLabelStyle(label)
@@ -51,6 +68,6 @@ export function Card({ item, onClick }: CardProps) {
 					)}
 				</div>
 			)}
-		</button>
+		</div>
 	)
 }

@@ -3,6 +3,13 @@ import * as matchers from '@testing-library/jest-dom/matchers'
 
 expect.extend(matchers)
 
+// Mock ResizeObserver for @dnd-kit (not available in jsdom)
+globalThis.ResizeObserver ??= class ResizeObserver {
+	observe() {}
+	unobserve() {}
+	disconnect() {}
+} as unknown as typeof globalThis.ResizeObserver
+
 // Mock next-themes
 vi.mock('next-themes', () => ({
 	useTheme: () => ({ theme: 'light', setTheme: vi.fn() }),
