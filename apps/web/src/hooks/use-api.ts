@@ -192,6 +192,7 @@ export function useUpdateItem() {
 			description?: string | null
 			dueDate?: string | null
 			labels?: string[] | null
+			assignedTo?: string | null
 		}) => api.patch<Item>(`/api/v1/items/${id}`, body),
 		onSuccess: () => {
 			qc.invalidateQueries({ queryKey: ['boards'] })
