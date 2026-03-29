@@ -54,6 +54,7 @@ export async function itemShowCommand(
 			`Description: ${data.description ?? '(none)'}`,
 			`Labels: ${data.labels?.join(', ') ?? '(none)'}`,
 			`Due Date: ${formatDueDatePlain(data.dueDate)}`,
+			`Assigned To: ${data.assignedTo ?? '(none)'}`,
 			`Created: ${data.createdAt}`,
 			`Updated: ${data.updatedAt}`,
 		]

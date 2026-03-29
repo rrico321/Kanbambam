@@ -77,6 +77,7 @@ export const items = pgTable(
 			.references(() => columns.id, { onDelete: 'cascade' }),
 		dueDate: timestamp('due_date', { withTimezone: true }),
 		labels: text('labels').array(),
+		assignedTo: text('assigned_to'),
 		createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
 		updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 	},

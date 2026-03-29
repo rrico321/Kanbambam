@@ -11,7 +11,7 @@ export function collect(value: string, previous: string[]) {
 
 export async function itemEditCommand(
 	id: string,
-	options: { title?: string; description?: string; label?: string[]; dueDate?: string },
+	options: { title?: string; description?: string; label?: string[]; dueDate?: string; assignedTo?: string },
 	globalOptions: GlobalOptions,
 ): Promise<void> {
 	const mode = detectOutputMode(globalOptions)
@@ -32,10 +32,13 @@ export async function itemEditCommand(
 	if (options.dueDate !== undefined) {
 		body.dueDate = options.dueDate === '' ? null : options.dueDate
 	}
+	if (options.assignedTo !== undefined) {
+		body.assignedTo = options.assignedTo === '' ? null : options.assignedTo
+	}
 
 	// Validate at least one flag provided
 	if (Object.keys(body).length === 0) {
-		const message = 'No changes specified. Use --title, --description, --label, or --due-date.'
+		const message = 'No changes specified. Use --title, --description, --label, --due-date, or --assigned-to.'
 		if (mode === 'json') {
 			outputJson({ error: { code: 'NO_CHANGES', message } }, {})
 		} else if (mode === 'ink') {

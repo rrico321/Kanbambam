@@ -27,6 +27,7 @@ async function verifyItemOwnership(itemId: string, userId: string) {
 			columnId: items.columnId,
 			dueDate: items.dueDate,
 			labels: items.labels,
+			assignedTo: items.assignedTo,
 			createdAt: items.createdAt,
 			updatedAt: items.updatedAt,
 		})
@@ -50,6 +51,7 @@ function formatItem(item: {
 	columnId: string
 	dueDate: Date | null
 	labels: string[] | null
+	assignedTo: string | null
 	createdAt: Date
 	updatedAt: Date
 }) {
@@ -61,6 +63,7 @@ function formatItem(item: {
 		columnId: item.columnId,
 		dueDate: formatTimestamp(item.dueDate),
 		labels: item.labels,
+		assignedTo: item.assignedTo,
 		createdAt: item.createdAt.toISOString(),
 		updatedAt: item.updatedAt.toISOString(),
 	}
@@ -171,6 +174,7 @@ itemsApp.openapi(createItemRoute, async (c) => {
 		columnId,
 		dueDate: null,
 		labels: null,
+		assignedTo: null,
 		createdAt: now,
 		updatedAt: now,
 	})
@@ -185,6 +189,7 @@ itemsApp.openapi(createItemRoute, async (c) => {
 				columnId,
 				dueDate: null,
 				labels: null,
+				assignedTo: null,
 				createdAt: now,
 				updatedAt: now,
 			}),
@@ -247,6 +252,7 @@ itemsApp.openapi(updateItemRoute, async (c) => {
 	if (body.description !== undefined) updates.description = body.description
 	if (body.dueDate !== undefined) updates.dueDate = body.dueDate ? new Date(body.dueDate) : null
 	if (body.labels !== undefined) updates.labels = body.labels
+	if (body.assignedTo !== undefined) updates.assignedTo = body.assignedTo
 
 	const result = await db.update(items).set(updates).where(eq(items.id, id)).returning()
 	const updated = result[0]

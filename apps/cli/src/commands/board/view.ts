@@ -88,6 +88,9 @@ export async function boardViewCommand(
 					if (item.labels && item.labels.length > 0) {
 						line += ` ${chalk.dim(`[${item.labels.join(', ')}]`)}`
 					}
+					if (item.assignedTo) {
+						line += ` ${chalk.cyan(`@${item.assignedTo}`)}`
+					}
 					if (item.dueDate) {
 						const colorFn = dueDateColor(item.dueDate)
 						line += ` ${colorFn(item.dueDate.slice(0, 10))}`

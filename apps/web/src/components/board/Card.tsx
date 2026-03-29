@@ -1,6 +1,6 @@
 'use client'
 
-import { FileText, Calendar } from 'lucide-react'
+import { FileText, Calendar, User } from 'lucide-react'
 import { useSortable } from '@dnd-kit/react/sortable'
 import { getLabelStyle } from '@/lib/labels'
 import type { Item } from '@kanbambam/shared'
@@ -42,7 +42,8 @@ export function Card({ item, index, column, onClick }: CardProps) {
 
 			{((item.labels && item.labels.length > 0) ||
 				item.dueDate ||
-				item.description) && (
+				item.description ||
+				item.assignedTo) && (
 				<div className="flex flex-wrap items-center gap-1 mt-2">
 					{item.labels?.map((label) => {
 						const style = getLabelStyle(label)
@@ -61,6 +62,12 @@ export function Card({ item, index, column, onClick }: CardProps) {
 						>
 							<Calendar className="w-3 h-3" />
 							{item.dueDate.slice(0, 10)}
+						</span>
+					)}
+					{item.assignedTo && (
+						<span className="flex items-center gap-0.5 text-xs text-cyan-600 dark:text-cyan-400">
+							<User className="w-3 h-3" />
+							{item.assignedTo}
 						</span>
 					)}
 					{item.description && (

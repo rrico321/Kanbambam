@@ -85,6 +85,8 @@ kanbambam item edit <id> --description "Updated description"
 kanbambam item edit <id> --label backend --label high-priority
 kanbambam item edit <id> --due-date 2026-04-01
 kanbambam item edit <id> --due-date ""           # Clear due date
+kanbambam item edit <id> --assigned-to "Alice"
+kanbambam item edit <id> --assigned-to ""        # Clear assignee
 
 # Move & reorder
 kanbambam item move <id> --to <column-id>

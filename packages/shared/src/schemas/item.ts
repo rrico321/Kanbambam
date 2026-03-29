@@ -9,6 +9,7 @@ export const ItemSchema = z.object({
 	columnId: z.string().startsWith('col_'),
 	dueDate: z.string().datetime().nullable(),
 	labels: z.array(z.string()).nullable(),
+	assignedTo: z.string().nullable(),
 	...TimestampFields,
 })
 
@@ -22,6 +23,7 @@ export const UpdateItemSchema = z.object({
 	description: z.string().nullable().optional(),
 	dueDate: z.union([z.string().datetime(), z.string().date()]).nullable().optional(),
 	labels: z.array(z.string()).nullable().optional(),
+	assignedTo: z.string().nullable().optional(),
 })
 
 export const MoveItemSchema = z.object({

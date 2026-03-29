@@ -62,6 +62,29 @@ export function ItemModal({ item, onClose }: ItemModalProps) {
 					/>
 				</div>
 
+				{/* Assigned To */}
+				<div>
+					<label className="text-sm font-semibold text-gray-700 dark:text-gray-300 block mb-1">
+						Assigned to
+					</label>
+					<input
+						type="text"
+						defaultValue={item.assignedTo ?? ''}
+						placeholder="Enter name..."
+						className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+						onBlur={(e) => {
+							const val = e.target.value.trim()
+							const newVal = val === '' ? null : val
+							if (newVal !== item.assignedTo) {
+								updateItem.mutate({ id: item.id, assignedTo: newVal })
+							}
+						}}
+						onKeyDown={(e) => {
+							if (e.key === 'Enter') (e.target as HTMLInputElement).blur()
+						}}
+					/>
+				</div>
+
 				{/* Delete - D-13 */}
 				<div className="pt-4 border-t border-gray-200 dark:border-gray-700">
 					<DeleteButton

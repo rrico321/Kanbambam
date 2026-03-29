@@ -1,7 +1,7 @@
 import { Command } from 'commander'
 import { printBanner } from './lib/banner.js'
 
-const VERSION = '1.0.5'
+const VERSION = '1.0.6'
 
 const program = new Command()
 
@@ -266,7 +266,8 @@ item
 	.option('-d, --description <text>', 'Description (empty string to clear)')
 	.option('-l, --label <tag>', 'Label (repeatable, replaces all)', collect, [])
 	.option('--due-date <date>', 'Due date YYYY-MM-DD (empty string to clear)')
-	.action(async (id: string, options: { title?: string; description?: string; label?: string[]; dueDate?: string }) => {
+	.option('--assigned-to <name>', 'Assigned to (free text, empty string to clear)')
+	.action(async (id: string, options: { title?: string; description?: string; label?: string[]; dueDate?: string; assignedTo?: string }) => {
 		const { itemEditCommand } = await import('./commands/item/edit.js')
 		await itemEditCommand(id, options, program.opts())
 	})

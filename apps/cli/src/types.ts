@@ -53,6 +53,7 @@ export interface ItemResponse {
 	position: string
 	dueDate: string | null
 	labels: string[] | null
+	assignedTo: string | null
 	createdAt: string
 	updatedAt: string
 }

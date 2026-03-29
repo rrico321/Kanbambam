@@ -30,7 +30,7 @@ Kanbambam is a Kanban board product with a CLI-first design. Manage boards, colu
 - **Web GUI** — drag-and-drop Kanban board at [kanbambam.vercel.app](https://kanbambam.vercel.app)
 - **Real-time sync** — CLI and web share the same API and database
 - **AI agent friendly** — `--json` output and `--force` flags for non-interactive automation
-- **Labels, due dates, descriptions** — everything you need for project management
+- **Labels, due dates, assignments, descriptions** — everything you need for project management
 - **Browser-based auth** — `kanbambam auth login` opens your browser, no passwords in the terminal
 
 ## Quick Start
@@ -51,6 +51,7 @@ kanbambam context set --board <id>
 # Add items
 kanbambam item create "Build the thing" --column <id> --description "Make it great"
 kanbambam item edit <id> --label backend --label high-priority --due-date 2026-04-01
+kanbambam item edit <id> --assigned-to "Alice"
 
 # View your board
 kanbambam board view
@@ -175,7 +176,7 @@ User
  └── Workspace (e.g. "Q2 Product Launch")
       └── Board (e.g. "Engineering Sprint 1")
            └── Column (e.g. "In Progress")
-                └── Item (title, description, labels, due date, position)
+                └── Item (title, description, labels, due date, assigned to, position)
 ```
 
 ## Contributing

@@ -1,6 +1,6 @@
 {
 	"name": "kanbambam",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "CLI-first Kanban board management — create and manage boards, columns, and items from your terminal",
 	"type": "module",
 	"license": "MIT",
