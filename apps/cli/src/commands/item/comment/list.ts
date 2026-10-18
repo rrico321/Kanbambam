@@ -3,6 +3,7 @@ import { CommentThread } from '../../../components/CommentThread.js'
 import { EmptyState } from '../../../components/EmptyState.js'
 import { apiRequest } from '../../../lib/api-client.js'
 import { detectOutputMode, outputInk, outputJson, outputPlain } from '../../../lib/output.js'
+import { stripControlSequences } from '../../../lib/sanitize.js'
 import type { ApiEnvelope, ApiError, CommentResponse, GlobalOptions } from '../../../types.js'
 import { reportError } from './report.js'
 
@@ -64,15 +65,23 @@ export async function itemCommentListCommand(
 		return
 	}
 
+	// --json stays raw (JSON escapes control characters); anything printed to the terminal is stripped
+	const safe = comments.map((c) => ({
+		...c,
+		id: stripControlSequences(c.id),
+		authorEmail: stripControlSequences(c.authorEmail),
+		body: stripControlSequences(c.body),
+	}))
+
 	if (mode === 'ink') {
 		outputInk(
 			React.createElement(CommentThread, {
-				comments: comments.map((c) => ({ ...c, when: formatWhen(c) })),
+				comments: safe.map((c) => ({ ...c, when: formatWhen(c) })),
 			}),
 		)
 	} else {
 		outputPlain(
-			comments.map((c) => `${c.authorEmail} · ${formatWhen(c)} · ${c.id}\n${c.body}`).join('\n\n'),
+			safe.map((c) => `${c.authorEmail} · ${formatWhen(c)} · ${c.id}\n${c.body}`).join('\n\n'),
 		)
 	}
 }

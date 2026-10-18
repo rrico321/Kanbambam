@@ -164,6 +164,29 @@ describe('item comment commands', () => {
 			expect(output()).toContain('Hello')
 		})
 
+		it('strips terminal control sequences from printed comments but not from --json', async () => {
+			const { apiRequest } = await import('../../../../lib/api-client.js')
+			const evil = {
+				...comment,
+				authorEmail: 'a\u001b]0;x\u0007@example.com',
+				body: 'hi\u001b[2J\u001b]52;c;ZXZpbA==\u0007 there\u0007\nline2',
+			}
+			vi.mocked(apiRequest).mockResolvedValueOnce(ok([evil], { total: 1, cursor: null }))
+
+			const { itemCommentListCommand } = await import('../list.js')
+			await itemCommentListCommand('itm_abc', {})
+
+			expect(output()).toContain('a@example.com')
+			expect(output()).toContain('hi there\nline2')
+			expect(output()).not.toContain('\u001b')
+			expect(output()).not.toContain('\u0007')
+
+			logSpy.mockClear()
+			vi.mocked(apiRequest).mockResolvedValueOnce(ok([evil], { total: 1, cursor: null }))
+			await itemCommentListCommand('itm_abc', { json: true })
+			expect(JSON.parse(output()).data[0].body).toBe(evil.body)
+		})
+
 		it('prints an empty message when there are no comments', async () => {
 			const { apiRequest } = await import('../../../../lib/api-client.js')
 			vi.mocked(apiRequest).mockResolvedValueOnce(ok([], { total: 0, cursor: null }))
