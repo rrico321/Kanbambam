@@ -1,13 +1,20 @@
-import { describe, it, expect, vi } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 
 // Mock use-api
 const mockMutate = vi.fn()
 vi.mock('@/hooks/use-api', () => ({
 	useUpdateItem: () => ({ mutate: mockMutate, isPending: false }),
 	useDeleteItem: () => ({ mutate: vi.fn(), isPending: false }),
-	useComments: () => ({ data: [], isLoading: false, isError: false }),
+	useComments: () => ({
+		comments: [],
+		isLoading: false,
+		isError: false,
+		hasOlder: false,
+		loadOlder: vi.fn(),
+		isLoadingOlder: false,
+	}),
 	useAddComment: () => ({ mutate: vi.fn(), isPending: false }),
 	useUpdateComment: () => ({ mutate: vi.fn(), isPending: false }),
 	useDeleteComment: () => ({ mutate: vi.fn(), isPending: false }),
@@ -49,9 +56,7 @@ describe('ItemModal', () => {
 	})
 
 	it('returns null when item is null', () => {
-		const { container } = renderWithProviders(
-			<ItemModal item={null} onClose={vi.fn()} />,
-		)
+		const { container } = renderWithProviders(<ItemModal item={null} onClose={vi.fn()} />)
 		expect(container.innerHTML).toBe('')
 	})
 })

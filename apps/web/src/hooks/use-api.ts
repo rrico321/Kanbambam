@@ -1,9 +1,10 @@
 'use client'
 
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { api } from '@/lib/api'
-import type { Workspace, Board, Column, Item, Comment } from '@kanbambam/shared'
+import type { Board, Column, Comment, Item, Workspace } from '@kanbambam/shared'
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMemo } from 'react'
 import { toast } from 'sonner'
+import { api } from '@/lib/api'
 
 // ---- Workspaces ----
 export function useWorkspaces() {
@@ -221,8 +222,11 @@ export function useMoveItem() {
 			itemId,
 			columnId,
 			position,
-		}: { itemId: string; columnId: string; position: string }) =>
-			api.post(`/api/v1/items/${itemId}/move`, { columnId, position }),
+		}: {
+			itemId: string
+			columnId: string
+			position: string
+		}) => api.post(`/api/v1/items/${itemId}/move`, { columnId, position }),
 		onSettled: () => {
 			qc.invalidateQueries({ queryKey: ['boards'] })
 			qc.invalidateQueries({ queryKey: ['boards'] })
@@ -233,17 +237,43 @@ export function useMoveItem() {
 }
 
 // ---- Comments ----
-// The api client drops pagination meta, so the thread loads the max page size (oldest first).
+// Pages are fetched newest-first so the latest comments are always loaded; the thread
+// shows them oldest-first and "Load older comments" walks backwards through the cursor.
+const COMMENTS_PAGE_SIZE = 50
+
 export function useComments(itemId: string | undefined) {
-	return useQuery({
+	const query = useInfiniteQuery({
 		queryKey: ['items', itemId, 'comments'],
-		queryFn: async () => {
-			const res = await api.get<Comment[]>(`/api/v1/items/${itemId}/comments?limit=100`)
+		queryFn: async ({ pageParam }) => {
+			const cursor = pageParam ? `&cursor=${encodeURIComponent(pageParam)}` : ''
+			const res = await api.get<Comment[]>(
+				`/api/v1/items/${itemId}/comments?limit=${COMMENTS_PAGE_SIZE}&order=desc${cursor}`,
+			)
 			if (res.error) throw new Error(res.error.message)
-			return res.data!
+			return {
+				comments: res.data!,
+				cursor: (res.meta?.cursor as string | null | undefined) ?? null,
+			}
 		},
+		initialPageParam: null as string | null,
+		getNextPageParam: (last) => last.cursor,
 		enabled: !!itemId,
 	})
+
+	// Pages are newest-first; flatten and reverse for display (oldest first)
+	const comments = useMemo(
+		() => query.data?.pages.flatMap((p) => p.comments).reverse(),
+		[query.data],
+	)
+
+	return {
+		comments,
+		isLoading: query.isLoading,
+		isError: query.isError,
+		hasOlder: query.hasNextPage,
+		loadOlder: () => query.fetchNextPage(),
+		isLoadingOlder: query.isFetchingNextPage,
+	}
 }
 
 export function useAddComment(itemId: string) {

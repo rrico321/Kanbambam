@@ -1,5 +1,5 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
-import { and, count, eq, sql } from 'drizzle-orm'
+import { and, asc, count, desc, eq, sql } from 'drizzle-orm'
 import { db } from '../../db'
 import { boards, columns, comments, items, users, workspaces } from '../../db/schema'
 import { generateId } from '../../lib/id'
@@ -77,7 +77,7 @@ export const commentsApp = new OpenAPIHono()
 // GET /api/v1/items/:id/comments
 commentsApp.openapi(listCommentsRoute, async (c) => {
 	const { id } = c.req.valid('param')
-	const { cursor, limit } = c.req.valid('query')
+	const { cursor, limit, order } = c.req.valid('query')
 	const userId = (c.get('jwtPayload') as { sub: string }).sub
 
 	const item = await verifyItemOwnership(id, userId)
@@ -91,7 +91,7 @@ commentsApp.openapi(listCommentsRoute, async (c) => {
 			.where(and(eq(comments.id, decodeCursor(cursor)), eq(comments.itemId, id)))
 		if (cursorRow.length > 0) {
 			conditions.push(
-				sql`(${comments.createdAt}, ${comments.id}) > (${cursorRow[0].createdAt.toISOString()}::timestamptz, ${cursorRow[0].id})`,
+				sql`(${comments.createdAt}, ${comments.id}) ${order === 'desc' ? sql.raw('<') : sql.raw('>')} (${cursorRow[0].createdAt.toISOString()}::timestamptz, ${cursorRow[0].id})`,
 			)
 		}
 	}
@@ -102,7 +102,11 @@ commentsApp.openapi(listCommentsRoute, async (c) => {
 			.from(comments)
 			.innerJoin(users, eq(comments.authorId, users.id))
 			.where(and(...conditions))
-			.orderBy(comments.createdAt, comments.id)
+			.orderBy(
+				...(order === 'desc'
+					? [desc(comments.createdAt), desc(comments.id)]
+					: [asc(comments.createdAt), asc(comments.id)]),
+			)
 			.limit(limit + 1),
 		db.select({ count: count() }).from(comments).where(eq(comments.itemId, id)),
 	])
