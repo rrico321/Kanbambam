@@ -5,6 +5,7 @@ const PREFIXES = {
 	board: 'brd',
 	column: 'col',
 	item: 'itm',
+	comment: 'cmt',
 	user: 'usr',
 	refreshToken: 'rtk',
 } as const

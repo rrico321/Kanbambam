@@ -8,6 +8,7 @@ import { workspacesApp } from './routes/workspaces/workspaces.handlers'
 import { boardsApp } from './routes/boards/boards.handlers'
 import { columnsApp } from './routes/columns/columns.handlers'
 import { itemsApp } from './routes/items/items.handlers'
+import { commentsApp } from './routes/comments/comments.handlers'
 
 const app = new OpenAPIHono()
 
@@ -33,6 +34,7 @@ app.use('/api/v1/workspaces/*', authMiddleware)
 app.use('/api/v1/boards/*', authMiddleware)
 app.use('/api/v1/columns/*', authMiddleware)
 app.use('/api/v1/items/*', authMiddleware)
+app.use('/api/v1/comments/*', authMiddleware)
 
 // Auth routes (no auth middleware)
 app.route('', authApp)
@@ -42,6 +44,7 @@ app.route('', workspacesApp)
 app.route('', boardsApp)
 app.route('', columnsApp)
 app.route('', itemsApp)
+app.route('', commentsApp)
 
 // OpenAPI doc endpoint
 app.doc('/api/docs', {

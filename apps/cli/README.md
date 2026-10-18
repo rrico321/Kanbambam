@@ -96,6 +96,16 @@ kanbambam item reorder <id> --position 1
 kanbambam item delete <id> [--force]
 ```
 
+### Comments
+
+```bash
+kanbambam item comment add <item-id> --body "Started work on this"
+kanbambam item comment add <item-id> --body-file update.md     # Long text from a file (use - for stdin)
+kanbambam item comment list <item-id>                          # Oldest first
+kanbambam item comment edit <comment-id> --body "Corrected"    # Author only
+kanbambam item comment delete <comment-id> [--force]           # Author only
+```
+
 ## Context
 
 Set active workspace and board to avoid passing IDs with every command:

@@ -17,7 +17,7 @@ import {
 
 // Ownership verification for items (item -> column -> board -> workspace -> user)
 
-async function verifyItemOwnership(itemId: string, userId: string) {
+export async function verifyItemOwnership(itemId: string, userId: string) {
 	const result = await db
 		.select({
 			id: items.id,
