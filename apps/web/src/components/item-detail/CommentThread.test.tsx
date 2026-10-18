@@ -4,7 +4,15 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 const addMutate = vi.fn()
 const updateMutate = vi.fn()
 const deleteMutate = vi.fn()
-let commentsState: { data: unknown[] | undefined; isLoading: boolean; isError: boolean }
+const loadOlder = vi.fn()
+let commentsState: {
+	comments: unknown[] | undefined
+	isLoading: boolean
+	isError: boolean
+	hasOlder: boolean
+	loadOlder: () => void
+	isLoadingOlder: boolean
+}
 
 vi.mock('@/hooks/use-api', () => ({
 	useComments: () => commentsState,
@@ -24,7 +32,14 @@ const base = {
 describe('CommentThread', () => {
 	beforeEach(() => {
 		vi.clearAllMocks()
-		commentsState = { data: [], isLoading: false, isError: false }
+		commentsState = {
+			comments: [],
+			isLoading: false,
+			isError: false,
+			hasOlder: false,
+			loadOlder,
+			isLoadingOlder: false,
+		}
 	})
 
 	it('shows an empty state', () => {
@@ -34,7 +49,7 @@ describe('CommentThread', () => {
 
 	it('renders author, relative time and body for each comment, in order', () => {
 		const now = Date.now()
-		commentsState.data = [
+		commentsState.comments = [
 			{
 				...base,
 				id: 'cmt_1',
@@ -72,7 +87,7 @@ describe('CommentThread', () => {
 
 	it('edits a comment', () => {
 		const ts = new Date().toISOString()
-		commentsState.data = [{ ...base, id: 'cmt_1', body: 'Old', createdAt: ts, updatedAt: ts }]
+		commentsState.comments = [{ ...base, id: 'cmt_1', body: 'Old', createdAt: ts, updatedAt: ts }]
 		render(<CommentThread itemId="itm_1" />)
 		fireEvent.click(screen.getByText('Edit'))
 		fireEvent.change(screen.getByLabelText('Edit comment'), { target: { value: 'New' } })
@@ -82,11 +97,26 @@ describe('CommentThread', () => {
 
 	it('asks for confirmation before deleting', () => {
 		const ts = new Date().toISOString()
-		commentsState.data = [{ ...base, id: 'cmt_1', body: 'Bye', createdAt: ts, updatedAt: ts }]
+		commentsState.comments = [{ ...base, id: 'cmt_1', body: 'Bye', createdAt: ts, updatedAt: ts }]
 		render(<CommentThread itemId="itm_1" />)
 		fireEvent.click(screen.getByText('Delete'))
 		expect(deleteMutate).not.toHaveBeenCalled()
 		fireEvent.click(screen.getByText('Delete', { selector: 'button.font-semibold' }))
 		expect(deleteMutate).toHaveBeenCalledWith('cmt_1')
+	})
+
+	it('offers to load older comments only when more exist', () => {
+		const ts = new Date().toISOString()
+		commentsState.comments = [
+			{ ...base, id: 'cmt_1', body: 'Newest', createdAt: ts, updatedAt: ts },
+		]
+		const { rerender } = render(<CommentThread itemId="itm_1" />)
+		expect(screen.queryByText('Load older comments')).not.toBeInTheDocument()
+
+		commentsState.hasOlder = true
+		rerender(<CommentThread itemId="itm_1" />)
+		fireEvent.click(screen.getByText('Load older comments'))
+		expect(loadOlder).toHaveBeenCalled()
+		expect(screen.getByText('Comments (1+)')).toBeInTheDocument()
 	})
 })

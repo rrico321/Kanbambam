@@ -4,7 +4,7 @@ import {
 	CreateCommentSchema,
 	ErrorResponseSchema,
 	envelopeSchema,
-	PaginationQuerySchema,
+	ListCommentsQuerySchema,
 	paginatedSchema,
 	UpdateCommentSchema,
 } from '@kanbambam/shared'
@@ -13,10 +13,10 @@ export const listCommentsRoute = createRoute({
 	method: 'get',
 	path: '/api/v1/items/{id}/comments',
 	tags: ['Comments'],
-	summary: 'List comments on an item (oldest first)',
+	summary: 'List comments on an item (oldest first by default; order=desc for newest first)',
 	request: {
 		params: z.object({ id: z.string() }),
-		query: PaginationQuerySchema,
+		query: ListCommentsQuerySchema,
 	},
 	responses: {
 		200: {

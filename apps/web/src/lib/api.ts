@@ -10,7 +10,7 @@ function resolveUrl(path: string): string {
 }
 
 type ApiError = { code: string; message: string }
-type ApiResult<T> = { data?: T; error?: ApiError }
+type ApiResult<T> = { data?: T; meta?: Record<string, unknown>; error?: ApiError }
 
 let isRefreshing = false
 let refreshPromise: Promise<boolean> | null = null
@@ -63,7 +63,7 @@ async function apiFetch<T>(
 
 	const json = await res.json()
 	if (!res.ok) return { error: json.error || { code: 'UNKNOWN', message: 'Request failed' } }
-	return { data: json.data }
+	return { data: json.data, meta: json.meta }
 }
 
 export const api = {
@@ -79,9 +79,6 @@ export const api = {
 }
 
 // Legacy export for existing code
-export async function apiPost<T>(
-	path: string,
-	body: unknown,
-): Promise<ApiResult<T>> {
+export async function apiPost<T>(path: string, body: unknown): Promise<ApiResult<T>> {
 	return api.post<T>(path, body)
 }

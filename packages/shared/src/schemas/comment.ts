@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { TimestampFields } from './common'
+import { PaginationQuerySchema, TimestampFields } from './common'
 
 export const COMMENT_BODY_MAX_LENGTH = 10000
 
@@ -20,4 +20,8 @@ export const CreateCommentSchema = z.object({
 
 export const UpdateCommentSchema = z.object({
 	body: CommentBodySchema,
+})
+
+export const ListCommentsQuerySchema = PaginationQuerySchema.extend({
+	order: z.enum(['asc', 'desc']).default('asc'),
 })

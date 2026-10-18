@@ -177,6 +177,53 @@ describe('Comment Routes', () => {
 		})
 	})
 
+	describe('Newest-first pagination', () => {
+		let pagedItem: string
+
+		beforeAll(async () => {
+			pagedItem = await setupItemForUser(USER_A_ID, 'paged-desc')
+			for (const n of [1, 2, 3, 4, 5]) {
+				const res = await authed('POST', `/api/v1/items/${pagedItem}/comments`, tokenA, {
+					body: `comment ${n}`,
+				})
+				expect(res.status).toBe(201)
+			}
+		})
+
+		it('order=desc returns newest first and follows the cursor', async () => {
+			const bodies = (json: { data: { body: string }[] }) => json.data.map((c) => c.body)
+			const first = await (
+				await authed('GET', `/api/v1/items/${pagedItem}/comments?limit=2&order=desc`, tokenA)
+			).json()
+			expect(bodies(first)).toEqual(['comment 5', 'comment 4'])
+			expect(first.meta.total).toBe(5)
+
+			const second = await (
+				await authed(
+					'GET',
+					`/api/v1/items/${pagedItem}/comments?limit=2&order=desc&cursor=${first.meta.cursor}`,
+					tokenA,
+				)
+			).json()
+			expect(bodies(second)).toEqual(['comment 3', 'comment 2'])
+
+			const third = await (
+				await authed(
+					'GET',
+					`/api/v1/items/${pagedItem}/comments?limit=2&order=desc&cursor=${second.meta.cursor}`,
+					tokenA,
+				)
+			).json()
+			expect(bodies(third)).toEqual(['comment 1'])
+			expect(third.meta.cursor).toBeNull()
+		})
+
+		it('rejects an unknown order', async () => {
+			const res = await authed('GET', `/api/v1/items/${pagedItem}/comments?order=sideways`, tokenA)
+			expect(res.status).toBe(400)
+		})
+	})
+
 	describe('Validation', () => {
 		it('rejects an empty body', async () => {
 			const res = await authed('POST', `/api/v1/items/${itemA}/comments`, tokenA, { body: '' })

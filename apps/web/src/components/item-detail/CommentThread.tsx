@@ -125,7 +125,7 @@ function CommentRow({ comment, itemId }: { comment: Comment; itemId: string }) {
 }
 
 export function CommentThread({ itemId }: { itemId: string }) {
-	const { data: comments, isLoading, isError } = useComments(itemId)
+	const { comments, isLoading, isError, hasOlder, loadOlder, isLoadingOlder } = useComments(itemId)
 	const add = useAddComment(itemId)
 	const [draft, setDraft] = useState('')
 
@@ -138,7 +138,8 @@ export function CommentThread({ itemId }: { itemId: string }) {
 	return (
 		<div>
 			<h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-				Comments{comments && comments.length > 0 ? ` (${comments.length})` : ''}
+				Comments
+				{comments && comments.length > 0 ? ` (${comments.length}${hasOlder ? '+' : ''})` : ''}
 			</h3>
 
 			{isLoading && <p className="text-sm text-gray-400">Loading comments...</p>}
@@ -147,6 +148,16 @@ export function CommentThread({ itemId }: { itemId: string }) {
 			)}
 			{comments && comments.length === 0 && (
 				<p className="text-sm text-gray-400 dark:text-gray-500 italic mb-3">No comments yet.</p>
+			)}
+			{hasOlder && (
+				<button
+					type="button"
+					onClick={loadOlder}
+					disabled={isLoadingOlder}
+					className="mb-3 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 disabled:opacity-50"
+				>
+					{isLoadingOlder ? 'Loading...' : 'Load older comments'}
+				</button>
 			)}
 			{comments && comments.length > 0 && (
 				<ul className="space-y-4 mb-4">
