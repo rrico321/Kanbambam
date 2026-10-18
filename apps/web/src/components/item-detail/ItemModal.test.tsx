@@ -7,6 +7,10 @@ const mockMutate = vi.fn()
 vi.mock('@/hooks/use-api', () => ({
 	useUpdateItem: () => ({ mutate: mockMutate, isPending: false }),
 	useDeleteItem: () => ({ mutate: vi.fn(), isPending: false }),
+	useComments: () => ({ data: [], isLoading: false, isError: false }),
+	useAddComment: () => ({ mutate: vi.fn(), isPending: false }),
+	useUpdateComment: () => ({ mutate: vi.fn(), isPending: false }),
+	useDeleteComment: () => ({ mutate: vi.fn(), isPending: false }),
 }))
 
 import { ItemModal } from './ItemModal'

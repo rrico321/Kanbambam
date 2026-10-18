@@ -162,6 +162,7 @@ kanbambam workspace create|list|rename|delete   Workspaces
 kanbambam board create|list|view|rename|delete  Boards
 kanbambam column add|rename|reorder|delete      Columns
 kanbambam item create|list|show|edit|move|reorder|delete  Items
+kanbambam item comment add|list|edit|delete     Comments on an item
 kanbambam context set|clear              Set active workspace/board
 ```
 

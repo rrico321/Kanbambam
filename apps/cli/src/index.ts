@@ -302,4 +302,47 @@ item
 		await itemDeleteCommand(id, options, program.opts())
 	})
 
+const itemComment = item.command('comment').description('Manage comments on an item')
+
+itemComment
+	.command('add')
+	.description('Add a comment to an item')
+	.argument('<item-id>', 'Item ID')
+	.option('-b, --body <text>', 'Comment text')
+	.option('--body-file <path>', 'Read comment text from a file (use - for stdin)')
+	.action(async (itemId: string, options: { body?: string; bodyFile?: string }) => {
+		const { itemCommentAddCommand } = await import('./commands/item/comment/add.js')
+		await itemCommentAddCommand(itemId, options, program.opts())
+	})
+
+itemComment
+	.command('list')
+	.description('List comments on an item (oldest first)')
+	.argument('<item-id>', 'Item ID')
+	.action(async (itemId: string) => {
+		const { itemCommentListCommand } = await import('./commands/item/comment/list.js')
+		await itemCommentListCommand(itemId, program.opts())
+	})
+
+itemComment
+	.command('edit')
+	.description('Edit a comment (author only)')
+	.argument('<comment-id>', 'Comment ID')
+	.option('-b, --body <text>', 'New comment text')
+	.option('--body-file <path>', 'Read new comment text from a file (use - for stdin)')
+	.action(async (commentId: string, options: { body?: string; bodyFile?: string }) => {
+		const { itemCommentEditCommand } = await import('./commands/item/comment/edit.js')
+		await itemCommentEditCommand(commentId, options, program.opts())
+	})
+
+itemComment
+	.command('delete')
+	.description('Delete a comment (author only)')
+	.argument('<comment-id>', 'Comment ID')
+	.option('-f, --force', 'Skip confirmation prompt')
+	.action(async (commentId: string, options: { force?: boolean }) => {
+		const { itemCommentDeleteCommand } = await import('./commands/item/comment/delete.js')
+		await itemCommentDeleteCommand(commentId, options, program.opts())
+	})
+
 program.parse()

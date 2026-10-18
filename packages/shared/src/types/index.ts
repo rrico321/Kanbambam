@@ -1,6 +1,7 @@
 import type { z } from 'zod'
 import type { BoardSchema, CreateBoardSchema, UpdateBoardSchema } from '../schemas/board'
 import type { ColumnSchema, CreateColumnSchema, UpdateColumnSchema } from '../schemas/column'
+import type { CommentSchema, CreateCommentSchema, UpdateCommentSchema } from '../schemas/comment'
 import type {
 	CreateItemSchema,
 	ItemSchema,
@@ -36,3 +37,7 @@ export type Item = z.infer<typeof ItemSchema>
 export type CreateItem = z.infer<typeof CreateItemSchema>
 export type UpdateItem = z.infer<typeof UpdateItemSchema>
 export type MoveItem = z.infer<typeof MoveItemSchema>
+
+export type Comment = z.infer<typeof CommentSchema>
+export type CreateComment = z.infer<typeof CreateCommentSchema>
+export type UpdateComment = z.infer<typeof UpdateCommentSchema>

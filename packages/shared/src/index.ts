@@ -1,5 +1,6 @@
 export * from './schemas/board'
 export * from './schemas/column'
+export * from './schemas/comment'
 export * from './schemas/common'
 export * from './schemas/item'
 export * from './schemas/user'

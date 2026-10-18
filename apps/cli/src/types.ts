@@ -62,3 +62,13 @@ export interface PaginatedMeta {
 	total: number
 	cursor: string | null
 }
+
+export interface CommentResponse {
+	id: string
+	itemId: string
+	authorId: string
+	authorEmail: string
+	body: string
+	createdAt: string
+	updatedAt: string
+}

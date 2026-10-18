@@ -7,6 +7,7 @@ import { EditableDescription } from './EditableDescription'
 import { LabelPicker } from './LabelPicker'
 import { DueDatePicker } from './DueDatePicker'
 import { DeleteButton } from './DeleteButton'
+import { CommentThread } from './CommentThread'
 import { useUpdateItem, useDeleteItem } from '@/hooks/use-api'
 
 interface ItemModalProps {
@@ -84,6 +85,9 @@ export function ItemModal({ item, onClose }: ItemModalProps) {
 						}}
 					/>
 				</div>
+
+				{/* Comments */}
+				<CommentThread itemId={item.id} />
 
 				{/* Delete - D-13 */}
 				<div className="pt-4 border-t border-gray-200 dark:border-gray-700">

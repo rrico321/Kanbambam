@@ -83,3 +83,20 @@ export const items = pgTable(
 	},
 	(t) => [index('items_column_id_position_idx').on(t.columnId, t.position)],
 )
+
+export const comments = pgTable(
+	'comments',
+	{
+		id: text('id').primaryKey(),
+		itemId: text('item_id')
+			.notNull()
+			.references(() => items.id, { onDelete: 'cascade' }),
+		authorId: text('author_id')
+			.notNull()
+			.references(() => users.id, { onDelete: 'cascade' }),
+		body: text('body').notNull(),
+		createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+		updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+	},
+	(t) => [index('comments_item_id_created_at_idx').on(t.itemId, t.createdAt, t.id)],
+)

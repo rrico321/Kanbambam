@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { api } from '@/lib/api'
-import type { Workspace, Board, Column, Item } from '@kanbambam/shared'
+import type { Workspace, Board, Column, Item, Comment } from '@kanbambam/shared'
 import { toast } from 'sonner'
 
 // ---- Workspaces ----
@@ -229,5 +229,57 @@ export function useMoveItem() {
 		},
 		onError: () =>
 			toast.error('Failed to move item. It has been returned to its original position.'),
+	})
+}
+
+// ---- Comments ----
+// The api client drops pagination meta, so the thread loads the max page size (oldest first).
+export function useComments(itemId: string | undefined) {
+	return useQuery({
+		queryKey: ['items', itemId, 'comments'],
+		queryFn: async () => {
+			const res = await api.get<Comment[]>(`/api/v1/items/${itemId}/comments?limit=100`)
+			if (res.error) throw new Error(res.error.message)
+			return res.data!
+		},
+		enabled: !!itemId,
+	})
+}
+
+export function useAddComment(itemId: string) {
+	const qc = useQueryClient()
+	return useMutation({
+		mutationFn: async (body: string) => {
+			const res = await api.post<Comment>(`/api/v1/items/${itemId}/comments`, { body })
+			if (res.error) throw new Error(res.error.message)
+			return res.data!
+		},
+		onSuccess: () => qc.invalidateQueries({ queryKey: ['items', itemId, 'comments'] }),
+		onError: () => toast.error('Failed to add comment'),
+	})
+}
+
+export function useUpdateComment(itemId: string) {
+	const qc = useQueryClient()
+	return useMutation({
+		mutationFn: async ({ id, body }: { id: string; body: string }) => {
+			const res = await api.patch<Comment>(`/api/v1/comments/${id}`, { body })
+			if (res.error) throw new Error(res.error.message)
+			return res.data!
+		},
+		onSuccess: () => qc.invalidateQueries({ queryKey: ['items', itemId, 'comments'] }),
+		onError: () => toast.error('Failed to update comment'),
+	})
+}
+
+export function useDeleteComment(itemId: string) {
+	const qc = useQueryClient()
+	return useMutation({
+		mutationFn: async (id: string) => {
+			const res = await api.delete(`/api/v1/comments/${id}`)
+			if (res.error) throw new Error(res.error.message)
+		},
+		onSuccess: () => qc.invalidateQueries({ queryKey: ['items', itemId, 'comments'] }),
+		onError: () => toast.error('Failed to delete comment'),
 	})
 }
