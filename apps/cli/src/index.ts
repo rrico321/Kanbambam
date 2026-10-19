@@ -1,7 +1,6 @@
 import { Command } from 'commander'
 import { printBanner } from './lib/banner.js'
-
-const VERSION = '1.0.6'
+import { VERSION } from './lib/version.js'
 
 const program = new Command()
 

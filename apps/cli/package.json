@@ -1,11 +1,11 @@
 {
 	"name": "kanbambam",
-	"version": "1.0.6",
+	"version": "1.0.9",
 	"description": "CLI-first Kanban board management — create and manage boards, columns, and items from your terminal",
 	"type": "module",
 	"license": "MIT",
 	"bin": {
-		"kanbambam": "./dist/index.js"
+		"kanbambam": "dist/index.js"
 	},
 	"files": [
 		"dist"
@@ -21,7 +21,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/rrico321/Kanbambam.git",
+		"url": "git+https://github.com/rrico321/Kanbambam.git",
 		"directory": "apps/cli"
 	},
 	"homepage": "https://kanbambam.vercel.app",
